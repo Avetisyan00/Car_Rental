@@ -1,2 +1,8 @@
-package com.example.carrental.entity;public class Role {
+package com.example.carrental.entity;
+
+public enum Role {
+    CLIENT,
+    ADMIN,
+    DRIVER,
+    DEALER
 }
