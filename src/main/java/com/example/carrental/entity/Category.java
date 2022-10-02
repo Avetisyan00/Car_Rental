@@ -1,2 +1,5 @@
-package com.example.carrental.entity;public enum Category {
+package com.example.carrental.entity;
+
+public enum Category {
+    SEDAN, COUPE, SPORTCAR, STATION_WAGON, HATCHBACK, CONVERTIBLE, SUV, MINIVAN, PICKUP, JEEP, ELECTRIC_CAR, CUV, SPYDER, HOT_HATCH, LIMOUSINE, UTE, PONY_CAR, SPORTS_SEDAN
 }

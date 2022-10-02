@@ -1,2 +1,6 @@
-package com.example.carrental.entity;public enum Transmission {
+package com.example.carrental.entity;
+
+public enum Transmission {
+    MANUAL,
+    AUTOMATIC
 }
