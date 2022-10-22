@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "order")
+@Table(name = "car_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

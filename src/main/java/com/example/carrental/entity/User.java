@@ -21,14 +21,13 @@ public class User {
     private String surname;
     private String email;
     private String password;
+    private int age;
+    private String phoneNumber;
     @Enumerated(value = EnumType.STRING)
     private Role role;
-    private String driverXp;
+    private String driverLicense;
     private double price;
     private int rating;
-    private String comment;
-    @ManyToOne
-    private Order order;
     @Enumerated(value = EnumType.STRING)
     private Status status;
 }

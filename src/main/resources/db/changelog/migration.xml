@@ -1,0 +1,119 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="createUserTable" author="eAvetisyan">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="INT(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="ENUM('CLIENT', 'ADMIN', 'DRIVER', 'DEALER')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="driver_license" type="ENUM('A','B','C1', 'D1', 'D', 'DE')">
+                <constraints nullable="true"/>
+            </column>
+            <column name="price" type="DOUBLE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="rating" type="INT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="ENUM('BUSY', 'FREE', 'BANNED')" defaultValue="FREE">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="createCarTable" author="eAvetisyan">
+        <createTable tableName="car">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="model" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transmission" type="ENUM('MANUAL', 'AUTO')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="drive_unit" type="ENUM('AWD', 'FWD', '_4WD', 'RWD')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category"
+                    type="ENUM('SEDAN', 'COUPE', 'SPORT_CAR', 'STATION_WAGON', 'HATCHBACK', 'CONVERTABLE', 'SUV', 'MINIVAN', 'PICKUP', 'JEEP', 'ELECTRIC', 'CUV', 'SPYDER', 'HOT_HATCH', 'LIMOUSINE', 'UTE', 'PONY_CAR', 'SPORTS_SEDAN')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="steering_wheel" type="ENUM('RIGHT', 'LEFT')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fuel_type" type="ENUM('DIESEL', 'GASOLINE', 'PETROL', 'ELECTRIC')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="color" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="production_year" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pic_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_per_hour" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dealer_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="dealer_id" referencedTableName="user" referencedColumnNames="id"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+    <changeSet id="createOrderTable" author="eAvetisyan">
+        <createTable tableName="car_order">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="amount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="driver_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="driver_id" referencedTableName="user" referencedColumnNames="id"/>
+            </column>
+            <!--            <column name="dealer_id" type="BIGINT">-->
+            <!--                <constraints nullable="false" foreignKeyName="dealer_id" referencedTableName="user" referencedColumnNames="id"/>-->
+            <!--            </column>-->
+            <!--            <column name="user_id" type="BIGINT">-->
+            <!--                <constraints nullable="false" foreignKeyName="user_id" referencedTableName="user" referencedColumnNames="id"/>-->
+            <!--            </column>-->
+            <column name="car_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="car_id" referencedTableName="car" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
