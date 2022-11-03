@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -21,14 +22,17 @@ public class User {
     private String surname;
     private String email;
     private String password;
+    private int age;
+    private String phoneNumber;
     @Enumerated(value = EnumType.STRING)
     private Role role;
-    private String driverXp;
+    @Enumerated(value = EnumType.STRING)
+    private DriverLicense driverLicense;
     private double price;
     private int rating;
-    private String comment;
-    @ManyToOne
-    private Order order;
+    private String picUrl;
     @Enumerated(value = EnumType.STRING)
     private Status status;
+    private boolean isEnabled;
+    private String verifyToken;
 }
