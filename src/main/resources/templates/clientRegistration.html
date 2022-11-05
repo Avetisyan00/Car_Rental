@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Become Client</title>
+</head>
+<!-- FavIcon Link -->
+<link rel="icon" href="/supercars/assets/images/favicon.png" type="image/gif" sizes="16x16">
+
+<!-- Bootstrap CSS Link -->
+<link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap.min.css">
+
+<!-- Datepicker CSS Link -->
+<link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap-datepicker.min.css">
+
+<!-- Swiper Slider CSS Link -->
+<link rel="stylesheet" type="text/css" href="/supercars/assets/css/swiper-bundle.min.css">
+
+<!-- Fancybox CSS Link -->
+<link rel="stylesheet" type="text/css" href="/supercars/assets/css/jquery.fancybox.min.css">
+
+<!-- Wow Animation CSS Link -->
+<link rel="stylesheet" type="text/css" href="/supercars/assets/css/animate.css">
+
+<!-- Main Style CSS Link -->
+<link rel="stylesheet" type="text/css" href="/supercars/assets/css/style.css">
+<body>
+<div>
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="site-brnading">
+                        <a href="/" title="SuperCars">
+                            <img src="/supercars/assets/images/logo.png" width="188" height="60" alt="SuperCars">
+                            <img src="/supercars/assets/images/logo.png" class="sticky" width="188" height="60"
+                                 alt="SuperCars">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<!-- Header End -->
+<br>
+<br>
+<br>
+<form action="/driver/registration" method="post" enctype="multipart/form-data">
+    <div class="book-car-form">
+        <div class="car-form-box">
+            <div class="form-box">
+                <label>Name</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
+                    <label>
+                        <input type="text" class="form-input" name="name" placeholder="Input your Name" required="">
+                    </label>
+                </div>
+            </div>
+
+            <!--    <div class="car-form-box">-->
+            <div class="form-box">
+                <label>Surname</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
+                    <label>
+                        <input type="text" class="form-input" name="surname" placeholder="Input your Surname"
+                               required="">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="car-form-box">
+            <div class="form-box">
+                <label>Email</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-mail-icon.svg" width="12" height="8" alt="Mail">
+                    <label>
+                        <input type="email" class="form-input" name="email" placeholder="Email Address" required="">
+                    </label>
+                </div>
+            </div>
+            <!--    </div>-->
+            <!--    <div class="car-form-box">-->
+            <div class="form-box">
+                <label>Phone Number</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-call-icon.svg" width="12" height="14" alt="Call">
+                    <label>
+                        <input type="text" class="form-input" name="phoneNumber" placeholder="Phone Number" required="">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="car-form-box">
+            <div class="form-box">
+                <label>Age</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-call-icon.svg" width="12" height="14" alt="Map">
+                    <label>
+                        <input type="number" class="form-input" name="age" placeholder="Age" required="">
+                    </label>
+                </div>
+            </div>
+            <!--    </div>-->
+            <!--    <div class="car-form-box">-->
+            <div class="form-box">
+                <label>Password</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14" alt="Map">
+                    <label>
+                        <input type="text" class="form-input" name="password" placeholder="password" required="">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="car-form-box">
+            <div class="form-box">
+                <label>Driver License</label>
+                <span style="font-family: sans-serif">If you want to drive by yourself input your driver license categories</span>
+                <div class="form-input-box" style="width: 200px">
+                    <label>
+                        <select name="driverLicense" multiple style="width: 50px ; height: 120px">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C1">C1</option>
+                            <option value="D">D</option>
+                            <option value="D1">D1</option>
+                            <option value="DE">DE</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    Profile picture <input type="file" name="userImage">
+    <div class="car-form-box" style="margin-left: 40%">
+        <div class="form-box">
+            <button type="submit" class="sec-btn"><span>Register</span></button>
+        </div>
+    </div>
+</form>
+<!-- Jquery JS Link -->
+<script src="/supercars/assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap JS Link -->
+<script src="/supercars/assets/js/bootstrap.min.js"></script>
+<script src="/supercars/assets/js/popper.min.js"></script>
+
+<!-- Datepicker JS Link -->
+<script src="/supercars/assets/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Swiper Slider JS Link -->
+<script src="/supercars/assets/js/swiper-bundle.min.js"></script>
+
+<!-- Fancybox JS Link -->
+<script src="/supercars/assets/js/jquery.fancybox.min.js"></script>
+
+<!-- Font Awesome JS Link -->
+<script src="/supercars/assets/js/font-awesome.min.js"></script>
+
+<!-- Wow Animation JS Link -->
+<script src="/supercars/assets/js/wow.min.js"></script>
+
+<!-- Custom JS Link -->
+<script src="/supercars/assets/js/custom.js"></script>
+
+</body>
+</html>

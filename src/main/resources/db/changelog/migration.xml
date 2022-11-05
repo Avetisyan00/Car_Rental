@@ -1,11 +1,8 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
-   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
-   http://www.liquibase.org/xml/ns/dbchangelog
-   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="createUserTable" author="eAvetisyan">
         <createTable tableName="user">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -86,7 +83,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="dealer_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="dealer_id" referencedTableName="user" referencedColumnNames="id"/>
+                <constraints nullable="false" foreignKeyName="dealer_id" referencedTableName="user"
+                             referencedColumnNames="id"/>
             </column>
 
         </createTable>
@@ -103,17 +101,38 @@
                 <constraints nullable="false"/>
             </column>
             <column name="driver_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="driver_id" referencedTableName="user" referencedColumnNames="id"/>
+                <constraints nullable="false" foreignKeyName="driver_id" referencedTableName="user"
+                             referencedColumnNames="id"/>
             </column>
-<!--            <column name="dealer_id" type="BIGINT">-->
-<!--                <constraints nullable="false" foreignKeyName="dealer_id" referencedTableName="user" referencedColumnNames="id"/>-->
-<!--            </column>-->
-<!--            <column name="user_id" type="BIGINT">-->
-<!--                <constraints nullable="false" foreignKeyName="user_id" referencedTableName="user" referencedColumnNames="id"/>-->
-<!--            </column>-->
+
             <column name="car_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="car_id" referencedTableName="car" referencedColumnNames="id"/>
+                <constraints nullable="false" foreignKeyName="car_id" referencedTableName="car"
+                             referencedColumnNames="id"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="addImageToUser" author="eAvetisyan">
+        <addColumn tableName="user">
+            <column name="picUrl" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="changeColumnName" author="eAvetisyan">
+        <renameColumn columnDataType="VARCHAR(255)" tableName="user" oldColumnName="picUrl" newColumnName="pic_url"/>
+    </changeSet>
+    <changeSet id="addIsEnabledColumn" author="eAvetisyan">
+        <addColumn tableName="user">
+            <column name="is_enabled" type="INT(1)" defaultValue="0"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="addVerifyTokenToUser" author="eAvetisyan">
+        <addColumn tableName="user">
+            <column type="varchar(255)" name="verify_token"/>
+        </addColumn>
+    </changeSet>
+    <!--    decided to add default value for rating, because I set it 0 every time manually while creating user (DRY)-->
+    <changeSet id="setDefaultValueForRating" author="eAvetisyan">
+        <addDefaultValue tableName="user" columnName="rating" defaultValue="0"/>
     </changeSet>
 </databaseChangeLog>

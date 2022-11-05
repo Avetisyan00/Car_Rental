@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- FavIcon Link -->
+    <link rel="icon" href="/supercars/assets/images/favicon.png" type="image/gif" sizes="16x16">
+
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap.min.css">
+
+    <!-- Datepicker CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap-datepicker.min.css">
+
+    <!-- Swiper Slider CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/swiper-bundle.min.css">
+
+    <!-- Fancybox CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/jquery.fancybox.min.css">
+
+    <!-- Wow Animation CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/animate.css">
+
+    <!-- Main Style CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/style.css">
+</head>
+<body>
+<div>
+    <th:block th:if="${error == true}">
+        <span style="color: red">Invalid credentials</span>
+    </th:block>
+</div>
+<form action="/login" method="post">
+    <div class="book-car-form" style="position: center">
+        <div class="car-form-box">
+            <div class="form-box">
+                <label>Email</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
+                    <label>
+                        <input type="email" class="form-input" name="email" placeholder="Input Email" required="">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="book-car-form" style="position: center">
+        <div class="car-form-box">
+            <div class="form-box">
+                <label>Password</label>
+                <div class="form-input-box">
+                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
+                    <label>
+                        <input type="password" class="form-input" name="password" placeholder="Input Password"
+                               required="">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="car-form-box" style="position: center">
+        <div class="form-box">
+            <button type="submit" class="sec-btn"><span>Login</span></button>
+        </div>
+    </div>
+    <div>
+        <span>Don't have an account? <a href="/registration">register</a></span>
+    </div>
+</form>
+
+
+<!-- Jquery JS Link -->
+<script src="/supercars/assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap JS Link -->
+<script src="/supercars/assets/js/bootstrap.min.js"></script>
+<script src="/supercars/assets/js/popper.min.js"></script>
+
+<!-- Datepicker JS Link -->
+<script src="/supercars/assets/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Swiper Slider JS Link -->
+<script src="/supercars/assets/js/swiper-bundle.min.js"></script>
+
+<!-- Fancybox JS Link -->
+<script src="/supercars/assets/js/jquery.fancybox.min.js"></script>
+
+<!-- Font Awesome JS Link -->
+<script src="/supercars/assets/js/font-awesome.min.js"></script>
+
+<!-- Wow Animation JS Link -->
+<script src="/supercars/assets/js/wow.min.js"></script>
+
+<!-- Custom JS Link -->
+<script src="/supercars/assets/js/custom.js"></script>
+
+</body>
+</html>
