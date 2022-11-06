@@ -29,14 +29,14 @@ public class Car {
     private Category category;
     @Enumerated(value = EnumType.STRING)
     private SteeringWheel steeringWheel;
+    @Enumerated(value = EnumType.STRING)
+    private FuelType fuelType;
     private String color;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date productionYear;
-    private String pic_url;
-    private double price;
+
+    private int productionYear;
+    private String picUrl;
+    private double pricePerHour;
     @ManyToOne
-    private Order order;
-    @ManyToOne
-    private User user;
+    private User dealer;
 }
 

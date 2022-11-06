@@ -397,7 +397,7 @@ p {
     position: relative;
     font-size: 0;
     line-height: 1;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .form-box label {
@@ -426,7 +426,7 @@ p {
     top: 50%;
     left: 15px;
     transform: translate(0, -50%);
-    width: 12px;
+    width: 10px;
     height: auto;
 }
 
@@ -2899,7 +2899,7 @@ button.close:hover {
 }
 
 .book-car-box .car-form-box {
-    width: 100%;
+    width: 50%;
     margin-bottom: 20px;
 }
 
@@ -4066,7 +4066,7 @@ button.close:hover {
     }
 
     .car-form-box:last-child {
-        width: 100%;
+        width: 50%;
         margin-bottom: 0;
     }
 
@@ -4753,7 +4753,7 @@ button.close:hover {
     }
 
     .car-form-box {
-        width: 100%;
+        width: 50%;
     }
 
     .h1-title {

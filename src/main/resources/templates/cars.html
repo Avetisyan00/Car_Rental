@@ -1,35 +1,36 @@
-﻿<!DOCTYPE html>
-<html lang="en-us">
+<!DOCTYPE html>
+<html lang="en-us" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>SuperCars - Cars</title>
-	<meta charset="utf-8">
-	<meta name="keywords" content="SuperCars">
+    <title>SuperCars - Cars</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="SuperCars">
     <meta name="description" content="SuperCars">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- FavIcon Link -->
-	<link rel="icon" href="../static/supercars/assets/images/favicon.png" type="image/gif" sizes="16x16">
+    <!-- FavIcon Link -->
+    <link rel="icon" href="/supercars/assets/images/favicon.png" type="image/gif" sizes="16x16">
 
-	<!-- Google Fonts -->
-	<link href="../../../css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="../../../css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
-	<!-- Bootstrap CSS Link -->
-	<link rel="stylesheet" type="text/css" href="../static/supercars/assets/css/bootstrap.min.css">
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap.min.css">
 
     <!-- Datepicker CSS Link -->
-	<link rel="stylesheet" type="text/css" href="../static/supercars/assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap-datepicker.min.css">
 
     <!-- Swiper Slider CSS Link -->
-	<link rel="stylesheet" type="text/css" href="../static/supercars/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/swiper-bundle.min.css">
 
     <!-- Fancybox CSS Link -->
-	<link rel="stylesheet" type="text/css" href="../static/supercars/assets/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/jquery.fancybox.min.css">
 
-	<!-- Wow Animation CSS Link -->
-	<link rel="stylesheet" type="text/css" href="../static/supercars/assets/css/animate.css">
+    <!-- Wow Animation CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/animate.css">
 
-	<!-- Main Style CSS Link -->
-	<link rel="stylesheet" type="text/css" href="../static/supercars/assets/css/style.css">
+    <!-- Main Style CSS Link -->
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/style.css">
 
 </head>
 <body class="fixed">
@@ -38,7 +39,7 @@
     <!-- Loader Start -->
     <div class="loader-box">
         <div class="loader">
-            <img src="../static/supercars/assets/images/loader.gif" width="300" height="300" alt="Car">
+            <img src="/supercars/assets/images/loader.gif" width="300" height="300" alt="Car">
         </div>
     </div>
     <!-- Loader End -->
@@ -50,8 +51,9 @@
                 <div class="col-lg-3">
                     <div class="site-brnading">
                         <a href="index.html" title="SuperCars">
-                            <img src="../static/supercars/assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
-                            <img src="../static/supercars/assets/images/logo.png" class="sticky" width="188" height="60" alt="SuperCars">
+                            <img src="/supercars/assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
+                            <img src="/supercars/assets/images/logo.png" class="sticky" width="188" height="60"
+                                 alt="SuperCars">
                         </a>
                     </div>
                 </div>
@@ -63,33 +65,39 @@
                                 <i class="menu-background top"></i>
                                 <i class="menu-background middle"></i>
                                 <i class="menu-background bottom"></i>
-								<ul>
-									<li><a href="index.html" title="Home">Home</a></li>
-									<li><a href="about-us.html" title="About Us">About Us</a></li>
-									<li class="sub-items active">
+                                <ul>
+                                    <li><a href="/" title="Home">Home</a></li>
+                                    <li><a href="/supercars/about-us.html" title="About Us">About Us</a></li>
+                                    <li><a href="/cars/add" title="Add">Add</a></li>
+                                    <li class="sub-items active">
                                         <a href="javascript:void(0);" title="Cars">Cars</a>
                                         <ul class="sub-menu">
-                                            <li class="active"><a href="cars.html" title="Car List">Car List</a></li>
-                                            <li><a href="car-detail.html" title="Car Detail">Car Detail</a></li>
+                                            <li class="active"><a href="/cars" title="Car List">Car List</a></li>
+                                            <li><a href="/supercars/car-detail.html" title="Car Detail">Car Detail</a>
+                                            </li>
                                         </ul>
                                     </li>
-									<li><a href="contact.html" title="Contact">Contact</a></li>
-								</ul>
+                                    <li><a href="/supercars/contact.html" title="Contact">Contact</a></li>
+                                </ul>
                                 <div class="header-search-login">
                                     <div class="header-search">
-                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#search_car" title="Search"><i class="fas fa-search"></i></a>
+                                        <a href="javascript:void(0);" data-bs-toggle="modal"
+                                           data-bs-target="#search_car" title="Search"><i class="fas fa-search"></i></a>
                                     </div>
                                     <div class="header-login">
-                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login" title="Login"><i class="far fa-user"></i></a>
+                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login"
+                                           title="Login"><i class="far fa-user"></i></a>
                                     </div>
                                 </div>
-							</div>
+                            </div>
                             <div class="for-mob">
                                 <div class="header-search">
-                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#search_car" title="Search"><i class="fas fa-search"></i></a>
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#search_car"
+                                       title="Search"><i class="fas fa-search"></i></a>
                                 </div>
                                 <div class="header-login">
-                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login" title="Login"><i class="fas fa-user"></i></a>
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#login"
+                                       title="Login"><i class="fas fa-user"></i></a>
                                 </div>
                             </div>
                         </nav>
@@ -101,8 +109,9 @@
     <!-- Header End -->
 
     <!-- Banner Start -->
-    <section class="main-banner inner-banner back-img" style="background-image: url('../static/supercars/assets/images/cars-banner.jpg');">
-        <span class="shape"><img src="../static/supercars/assets/images/inner-banner-shape.svg" alt="shape"></span>
+    <section class="main-banner inner-banner back-img"
+             style="background-image: url('/supercars/assets/images/cars-banner.jpg');">
+        <span class="shape"><img src="/supercars/assets/images/inner-banner-shape.svg" alt="shape"></span>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -134,8 +143,10 @@
                                     <div class="form-box">
                                         <label>Pick Up Location</label>
                                         <div class="form-input-box">
-                                            <img src="../static/supercars/assets/images/form-map-icon.svg" width="12" height="14" alt="Map">
-                                            <input type="text" class="form-input" placeholder="Kingstone Upon Hull" required="">
+                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"
+                                                 alt="Map">
+                                            <input type="text" class="form-input" placeholder="Kingstone Upon Hull"
+                                                   required="">
                                         </div>
                                     </div>
                                 </div>
@@ -143,8 +154,10 @@
                                     <div class="form-box">
                                         <label>Return Location</label>
                                         <div class="form-input-box">
-                                            <img src="../static/supercars/assets/images/form-map-icon.svg" width="12" height="14" alt="Map">
-                                            <input type="text" class="form-input" placeholder="Heathrow Airport" required="">
+                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"
+                                                 alt="Map">
+                                            <input type="text" class="form-input" placeholder="Heathrow Airport"
+                                                   required="">
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +165,8 @@
                                     <div class="form-box">
                                         <label>Pick Up Date</label>
                                         <div class="form-input-box input-group date">
-                                            <img src="../static/supercars/assets/images/form-calendar-icon.svg" width="14" height="14" alt="Calendar">
+                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
+                                                 height="14" alt="Calendar">
                                             <span class="input-group-addon"></span>
                                             <input type="text" class="form-input">
                                         </div>
@@ -162,7 +176,8 @@
                                     <div class="form-box">
                                         <label>Return Date</label>
                                         <div class="form-input-box input-group date">
-                                            <img src="../static/supercars/assets/images/form-calendar-icon.svg" width="14" height="14" alt="Calendar">
+                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
+                                                 height="14" alt="Calendar">
                                             <span class="input-group-addon"></span>
                                             <input type="text" class="form-input">
                                         </div>
@@ -188,20 +203,37 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="cars-sidebar">
-                        <div class="cars-sidebar-box wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <div class="cars-sidebar-box wow right-animation" data-wow-duration="0.8s"
+                             data-wow-delay="0.2s">
                             <h3 class="h3-title">Category</h3>
                             <ul>
-                                <li><a href="javascript:void(0);" title="All">All</a></li>
-                                <li><a href="javascript:void(0);" title="Wedding Rides">Wedding Rides</a></li>
-                                <li><a href="javascript:void(0);" title="Corporate Rides">Corporate Rides</a></li>
-                                <li><a href="javascript:void(0);" title="Executive Rides">Executive Rides</a></li>
+                                <li><a href="/cars" title="All">All</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'SEDAN')}" >Sedan</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'SPORTCAR')}" >SportCar</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'STATION_WAGON')}" >StationWagon</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'HATCHBACK')}" >HatchBack</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'CONVERTIBLE')}" >Convertible</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'SUV')}" >Suv</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'MINIVAN')}" >Minivan</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'PICKUP')}" >Pickup</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'JEEP' )}">Jeep</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'ELECTRIC' )}">Electric</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'CUV' )}">Cuv</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'SPYDER' )}">Spyder</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'HOT_HATCH' )}">HotHatch</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'LIMOUSINE' )}">Limousine</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'UTE' )}">Ute</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'PONY_CAR' )}">PonyCar</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category = 'SPORTS_SEDAN' )}">SportsSedan</a></li>
                             </ul>
                         </div>
-                        <div class="cars-sidebar-box wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                        <div class="cars-sidebar-box wow right-animation" data-wow-duration="0.8s"
+                             data-wow-delay="0.3s">
                             <h3 class="h3-title">Cars Brand</h3>
                             <ul>
                                 <li><a href="javascript:void(0);" title="All Cars">All Cars <span>1076</span></a></li>
-                                <li><a href="javascript:void(0);" title="Aston Martin">Aston Martin <span>75</span></a></li>
+                                <li><a href="javascript:void(0);" title="Aston Martin">Aston Martin <span>75</span></a>
+                                </li>
                                 <li><a href="javascript:void(0);" title="Audi">Audi <span>93</span></a></li>
                                 <li><a href="javascript:void(0);" title="Mercedes">Mercedes <span>111</span></a></li>
                                 <li><a href="javascript:void(0);" title="Mitsubishi">Mitsubishi <span>84</span></a></li>
@@ -216,296 +248,93 @@
                 <div class="col-lg-8">
                     <div class="cars-list">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                            <div class="col-md-6" th:each="car:${cars}">
+                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s"
+                                     data-wow-delay="0.2s">
                                     <div class="car-img">
-                                        <img src="../static/supercars/assets/images/car-img1.png" width="430" height="220" alt="Aston Martin DBS">
+                                        <img th:src="@{/cars/getImage(fileName =${car.picUrl})}" width="430"
+                                             height="220"
+                                             alt="Aston Martin DBS">
                                     </div>
                                     <div class="car-box-text">
-                                        <h3 class="h3-title">Aston Martin DBS</h3>
+                                        <h3 class="h3-title" th:text="${car.model + ' ' +car.name}"></h3>
                                         <div class="price-reviews">
                                             <div class="car-price">
-                                                <h4 class="h4-title"><span>$59</span> / Day</h4>
+                                                <h4 class="h4-title"><span th:text="${car.pricePerHour}"></span> / HOUR</h4>
                                             </div>
                                             <div class="car-review">
                                                 <p>50 Reviews</p>
                                                 <ul>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
+                                                    <li><img src="/supercars/assets/images/rating-icon.svg" width="20"
+                                                             height="20" alt="Star"></li>
+                                                    <li><img src="/supercars/assets/images/rating-icon.svg" width="20"
+                                                             height="20" alt="Star"></li>
+                                                    <li><img src="/supercars/assets/images/rating-icon.svg" width="20"
+                                                             height="20" alt="Star"></li>
+                                                    <li><img src="/supercars/assets/images/rating-icon.svg" width="20"
+                                                             height="20" alt="Star"></li>
+                                                    <li><img src="/supercars/assets/images/rating-icon.svg" width="20"
+                                                             height="20" alt="Star"></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="cars-features-list">
                                             <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/seat-icon.svg" width="34" height="45" alt="Seat"></span>
+                                                <span class="icon"><img src="/supercars/assets/images/seat-icon.svg"
+                                                                        width="34" height="45" alt="Seat"></span>
                                                 <p>4 Seats</p>
                                             </div>
                                             <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/ac-icon.svg" width="45" height="45" alt="AC"></span>
-                                                <p>AC</p>
+                                                <span class="icon"><img src="/supercars/assets/images/gear-icon.svg"
+                                                                        width="30" height="45" alt="Auto"></span>
+                                                <p th:text="${car.transmission}"></p>
                                             </div>
                                             <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/gear-icon.svg" width="30" height="45" alt="Auto"></span>
-                                                <p>Auto</p>
+                                                <span class="icon"><img src="/supercars/assets/images/petrol-icon.svg"
+                                                                        width="45" height="45" alt="Petrol"></span>
+                                                <p th:text="${car.fuelType}"></p>
                                             </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/petrol-icon.svg" width="45" height="45" alt="Petrol"></span>
-                                                <p>Petrol</p>
+                                            <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
+                                                 data-wow-delay="0.2s">
+                                                <span class="icon"><img
+                                                        src="/supercars/assets/images/wheel-drive-icon.svg" width="34"
+                                                        height="45" alt="All Wheel Drive"></span>
+                                                <p th:text="${car.steeringWheel}"></p>
+                                            </div>
+                                            <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
+                                                 data-wow-delay="0.2s">
+                                                <span class="icon"><a th:href="@{/cars/delete(id = ${car.id})}"><img
+                                                                        src="/supercars/assets/images/delete.png"width="34" height="45"></a></span>
+                                                <p>Remove</p>
+                                            </div>
+                                            <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
+                                                 data-wow-delay="0.2s">
+                                                <span class="icon"><a th:href="@{/cars/edit(id = ${car.id})}"><img
+                                                                        src="/supercars/assets/images/edit1.png"width="34" height="45"></a></span>
+                                                <p>Edit</p>
                                             </div>
                                         </div>
                                         <div class="cars-features-btn">
-                                            <a href="car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
+                                            <a href="/supercars/car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                    <div class="car-img">
-                                        <img src="../static/supercars/assets/images/car-img2.png" width="430" height="220" alt="Porsche">
-                                    </div>
-                                    <div class="car-box-text">
-                                        <h3 class="h3-title">Porsche</h3>
-                                        <div class="price-reviews">
-                                            <div class="car-price">
-                                                <h4 class="h4-title"><span>$59</span> / Day</h4>
-                                            </div>
-                                            <div class="car-review">
-                                                <p>50 Reviews</p>
-                                                <ul>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-list">
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/seat-icon.svg" width="34" height="45" alt="Seat"></span>
-                                                <p>4 Seats</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/ac-icon.svg" width="45" height="45" alt="AC"></span>
-                                                <p>AC</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/gear-icon.svg" width="30" height="45" alt="Auto"></span>
-                                                <p>Auto</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/petrol-icon.svg" width="45" height="45" alt="Petrol"></span>
-                                                <p>Petrol</p>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-btn">
-                                            <a href="car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
-                                        </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="pagination wow fadeup-animation" data-wow-duration="0.8s"
+                                         data-wow-delay="0.2s">
+                                        <ul>
+                                            <li><a href="javascript:void(0);" class="arrow" title="Previous"><i
+                                                    class="fas fa-angle-double-left" aria-hidden="true"></i></a></li>
+                                            <li th:if="${cars.totalPages > 0}" th:each="pageNumber:${pageNumbers}">
+                                                <a th:href="@{/cars(size = ${cars.size},page = ${pageNumber})}" th:text="${pageNumber}"></a>
+                                            </li>
+                                            <li><a href="javascript:void(0);" class="arrow" title="Next"><i
+                                                    class="fas fa-angle-double-right" aria-hidden="true"></i></a></li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                    <div class="car-img">
-                                        <img src="../static/supercars/assets/images/car-img3.png" width="430" height="220" alt="Audi E-Tron">
-                                    </div>
-                                    <div class="car-box-text">
-                                        <h3 class="h3-title">Audi E-Tron</h3>
-                                        <div class="price-reviews">
-                                            <div class="car-price">
-                                                <h4 class="h4-title"><span>$59</span> / Day</h4>
-                                            </div>
-                                            <div class="car-review">
-                                                <p>50 Reviews</p>
-                                                <ul>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-list">
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/seat-icon.svg" width="34" height="45" alt="Seat"></span>
-                                                <p>4 Seats</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/ac-icon.svg" width="45" height="45" alt="AC"></span>
-                                                <p>AC</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/gear-icon.svg" width="30" height="45" alt="Auto"></span>
-                                                <p>Auto</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/petrol-icon.svg" width="45" height="45" alt="Petrol"></span>
-                                                <p>Petrol</p>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-btn">
-                                            <a href="car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                    <div class="car-img">
-                                        <img src="../static/supercars/assets/images/car-img4.png" width="430" height="220" alt="Toyota Yaris">
-                                    </div>
-                                    <div class="car-box-text">
-                                        <h3 class="h3-title">Toyota Yaris</h3>
-                                        <div class="price-reviews">
-                                            <div class="car-price">
-                                                <h4 class="h4-title"><span>$59</span> / Day</h4>
-                                            </div>
-                                            <div class="car-review">
-                                                <p>50 Reviews</p>
-                                                <ul>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-list">
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/seat-icon.svg" width="34" height="45" alt="Seat"></span>
-                                                <p>4 Seats</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/ac-icon.svg" width="45" height="45" alt="AC"></span>
-                                                <p>AC</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/gear-icon.svg" width="30" height="45" alt="Auto"></span>
-                                                <p>Auto</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/petrol-icon.svg" width="45" height="45" alt="Petrol"></span>
-                                                <p>Petrol</p>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-btn">
-                                            <a href="car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                    <div class="car-img">
-                                        <img src="../static/supercars/assets/images/car-img3.png" width="430" height="220" alt="Audi E-Tron">
-                                    </div>
-                                    <div class="car-box-text">
-                                        <h3 class="h3-title">Audi E-Tron</h3>
-                                        <div class="price-reviews">
-                                            <div class="car-price">
-                                                <h4 class="h4-title"><span>$59</span> / Day</h4>
-                                            </div>
-                                            <div class="car-review">
-                                                <p>50 Reviews</p>
-                                                <ul>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-list">
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/seat-icon.svg" width="34" height="45" alt="Seat"></span>
-                                                <p>4 Seats</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/ac-icon.svg" width="45" height="45" alt="AC"></span>
-                                                <p>AC</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/gear-icon.svg" width="30" height="45" alt="Auto"></span>
-                                                <p>Auto</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/petrol-icon.svg" width="45" height="45" alt="Petrol"></span>
-                                                <p>Petrol</p>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-btn">
-                                            <a href="car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                    <div class="car-img">
-                                        <img src="../static/supercars/assets/images/car-img1.png" width="430" height="220" alt="Aston Martin DBS">
-                                    </div>
-                                    <div class="car-box-text">
-                                        <h3 class="h3-title">Aston Martin DBS</h3>
-                                        <div class="price-reviews">
-                                            <div class="car-price">
-                                                <h4 class="h4-title"><span>$59</span> / Day</h4>
-                                            </div>
-                                            <div class="car-review">
-                                                <p>50 Reviews</p>
-                                                <ul>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                    <li><img src="../static/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-list">
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/seat-icon.svg" width="34" height="45" alt="Seat"></span>
-                                                <p>4 Seats</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/ac-icon.svg" width="45" height="45" alt="AC"></span>
-                                                <p>AC</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/gear-icon.svg" width="30" height="45" alt="Auto"></span>
-                                                <p>Auto</p>
-                                            </div>
-                                            <div class="cars-features-box">
-                                                <span class="icon"><img src="../static/supercars/assets/images/petrol-icon.svg" width="45" height="45" alt="Petrol"></span>
-                                                <p>Petrol</p>
-                                            </div>
-                                        </div>
-                                        <div class="cars-features-btn">
-                                            <a href="car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="pagination wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                <ul>
-                                    <li><a href="javascript:void(0);" class="arrow" title="Previous"><i class="fas fa-angle-double-left" aria-hidden="true"></i></a></li>
-                                    <li><a href="javascript:void(0);">1</a></li>
-                                    <li><a href="javascript:void(0);">2</a></li>
-                                    <li class="active"><a href="javascript:void(0);">3</a></li>
-                                    <li><a href="javascript:void(0);">4</a></li>
-                                    <li><a href="javascript:void(0);">5</a></li>
-                                    <li><a href="javascript:void(0);" class="arrow" title="Next"><i class="fas fa-angle-double-right" aria-hidden="true"></i></a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -513,6 +342,7 @@
             </div>
         </div>
     </section>
+
     <!-- Cars List End -->
 
     <!-- Footer Start -->
@@ -523,13 +353,18 @@
                     <div class="footer-info wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
                         <div class="footer-logo">
                             <a href="index.html" title="SuperCars">
-                                <img src="../static/supercars/assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
+                                <img src="/supercars/assets/images/logo-white.png" width="188" height="60"
+                                     alt="SuperCars">
                             </a>
                         </div>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. normal distribution of letters, as opposed to using 'Content here.</p>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a
+                            page when looking at its layout. normal distribution of letters, as opposed to using
+                            'Content here.</p>
                         <div class="social-icon">
-                            <a href="javascript:void(0);" title="Follow on Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0);" title="Follow on Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="javascript:void(0);" title="Follow on Facebook"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0);" title="Follow on Instagram"><i
+                                    class="fab fa-instagram"></i></a>
                             <a href="javascript:void(0);" title="Follow on Twitter"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
@@ -538,10 +373,10 @@
                     <div class="quick-links wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
                         <h3 class="h3-title">Quick Links</h3>
                         <ul>
-                            <li><a href="index.html" title="Home">Home</a></li>
-                            <li><a href="about-us.html" title="About Us">About Us</a></li>
-                            <li><a href="cars.html" title="Cars">Cars</a></li>
-                            <li><a href="contact.html" title="Contact">Contact</a></li>
+                            <li><a href="/" title="Home">Home</a></li>
+                            <li><a href="/supercars/about-us.html" title="About Us">About Us</a></li>
+                            <li><a href="/cars" title="Cars">Cars</a></li>
+                            <li><a href="/supercars/contact.html" title="Contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -573,7 +408,8 @@
                                 </a>
                             </div>
                             <div class="contact-link-box">
-                                <a href="javascript:void(0);" title="2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York">
+                                <a href="javascript:void(0);"
+                                   title="2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York">
                                     <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
                                     <span class="text">2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York</span>
                                 </a>
@@ -589,7 +425,8 @@
             <div class="row">
                 <div class="col-lg-6 order-lg-1 order-2">
                     <div class="copy-right">
-                        <p>Copyright © 2021 <a href="https://geekcodelab.com/" title="GeekCodeLab" target="_blank">GeekCodeLab</a>. All Rights Reserved.</p>
+                        <p>Copyright © 2021 <a href="https://geekcodelab.com/" title="GeekCodeLab" target="_blank">GeekCodeLab</a>.
+                            All Rights Reserved.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-2 order-1">
@@ -608,32 +445,36 @@
 
     <!-- Scroll To Top Start -->
     <div class="scroll-to-top">
-        <span><img src="../static/supercars/assets/images/scroll-top-car.png" alt="car"></span>
+        <span><img src="/supercars/assets/images/scroll-top-car.png" alt="car"></span>
     </div>
     <!-- Scroll To Top End -->
 
     <!-- Login Popup Start -->
     <div class="modal fade common-popup" id="login">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="popup-title">
-					<h3 class="h3-title">Login</h3>
-					<button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-				</div>
-				<div class="common-popup-overflow">
-					<div class="common-popup-text">
-						<div class="contact-form">
-							<form>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="popup-title">
+                    <h3 class="h3-title">Login</h3>
+                    <button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i
+                            class="fas fa-times"></i></button>
+                </div>
+                <div class="common-popup-overflow">
+                    <div class="common-popup-text">
+                        <div class="contact-form">
+                            <form>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-box">
-                                            <input type="email" class="form-input" placeholder="Enter Email Address" required="">
+                                            <input type="email" class="form-input" placeholder="Enter Email Address"
+                                                   required="">
                                         </div>
                                         <div class="form-box">
-                                            <input type="password" class="form-input" placeholder="Enter Paaword" required="">
+                                            <input type="password" class="form-input" placeholder="Enter Paaword"
+                                                   required="">
                                         </div>
                                         <div class="form-box checkbox">
-                                            <label for="remember_pass"><input type="checkbox" id="remember_pass">Remember Password</label>
+                                            <label for="remember_pass"><input type="checkbox" id="remember_pass">Remember
+                                                Password</label>
                                         </div>
                                         <div class="form-box">
                                             <button type="submit" class="sec-btn"><span>Login</span></button>
@@ -644,33 +485,36 @@
                             <div class="contact-form-text">
                                 <p>Not have an account? <a href="javascript:void(0);" title="Singup">Singup</a></p>
                             </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Login Popup End -->
 
     <!-- Search Popup Start -->
     <div class="modal fade common-popup" id="search_car">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="popup-title">
-					<h3 class="h3-title">Search Car</h3>
-					<button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-				</div>
-				<div class="common-popup-overflow">
-					<div class="common-popup-text">
-						<div class="search-popup-form">
-							<form>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="popup-title">
+                    <h3 class="h3-title">Search Car</h3>
+                    <button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i
+                            class="fas fa-times"></i></button>
+                </div>
+                <div class="common-popup-overflow">
+                    <div class="common-popup-text">
+                        <div class="search-popup-form">
+                            <form>
                                 <div class="search-car-form">
                                     <div class="car-form-box">
                                         <div class="form-box">
                                             <label>Pick Up Location</label>
                                             <div class="form-input-box">
-                                                <img src="../static/supercars/assets/images/form-map-icon.svg" width="12" height="14" alt="Map">
-                                                <input type="text" class="form-input" placeholder="Kingstone Upon Hull" required="">
+                                                <img src="/supercars/assets/images/form-map-icon.svg" width="12"
+                                                     height="14" alt="Map">
+                                                <input type="text" class="form-input" placeholder="Kingstone Upon Hull"
+                                                       required="">
                                             </div>
                                         </div>
                                     </div>
@@ -678,8 +522,10 @@
                                         <div class="form-box">
                                             <label>Return Location</label>
                                             <div class="form-input-box">
-                                                <img src="../static/supercars/assets/images/form-map-icon.svg" width="12" height="14" alt="Map">
-                                                <input type="text" class="form-input" placeholder="Heathrow Airport" required="">
+                                                <img src="/supercars/assets/images/form-map-icon.svg" width="12"
+                                                     height="14" alt="Map">
+                                                <input type="text" class="form-input" placeholder="Heathrow Airport"
+                                                       required="">
                                             </div>
                                         </div>
                                     </div>
@@ -687,7 +533,8 @@
                                         <div class="form-box">
                                             <label>Pick Up Date</label>
                                             <div class="form-input-box input-group date">
-                                                <img src="../static/supercars/assets/images/form-calendar-icon.svg" width="14" height="14" alt="Calendar">
+                                                <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
+                                                     height="14" alt="Calendar">
                                                 <span class="input-group-addon"></span>
                                                 <input type="text" class="form-input">
                                             </div>
@@ -697,7 +544,8 @@
                                         <div class="form-box">
                                             <label>Return Date</label>
                                             <div class="form-input-box input-group date">
-                                                <img src="../static/supercars/assets/images/form-calendar-icon.svg" width="14" height="14" alt="Calendar">
+                                                <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
+                                                     height="14" alt="Calendar">
                                                 <span class="input-group-addon"></span>
                                                 <input type="text" class="form-input">
                                             </div>
@@ -710,40 +558,40 @@
                                     </div>
                                 </div>
                             </form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Search Popup End -->
 
 </div>
 
 <!-- Jquery JS Link -->
-<script src="../static/supercars/assets/js/jquery.min.js"></script>
+<script src="/supercars/assets/js/jquery.min.js"></script>
 
 <!-- Bootstrap JS Link -->
-<script src="../static/supercars/assets/js/bootstrap.min.js"></script>
-<script src="../static/supercars/assets/js/popper.min.js"></script>
+<script src="/supercars/assets/js/bootstrap.min.js"></script>
+<script src="/supercars/assets/js/popper.min.js"></script>
 
 <!-- Datepicker JS Link -->
-<script src="../static/supercars/assets/js/bootstrap-datepicker.min.js"></script>
+<script src="/supercars/assets/js/bootstrap-datepicker.min.js"></script>
 
 <!-- Swiper Slider JS Link -->
-<script src="../static/supercars/assets/js/swiper-bundle.min.js"></script>
+<script src="/supercars/assets/js/swiper-bundle.min.js"></script>
 
 <!-- Fancybox JS Link -->
-<script src="../static/supercars/assets/js/jquery.fancybox.min.js"></script>
+<script src="/supercars/assets/js/jquery.fancybox.min.js"></script>
 
 <!-- Font Awesome JS Link -->
-<script src="../static/supercars/assets/js/font-awesome.min.js"></script>
+<script src="/supercars/assets/js/font-awesome.min.js"></script>
 
 <!-- Wow Animation JS Link -->
-<script src="../static/supercars/assets/js/wow.min.js"></script>
+<script src="/supercars/assets/js/wow.min.js"></script>
 
 <!-- Custom JS Link -->
-<script src="../static/supercars/assets/js/custom.js"></script>
+<script src="/supercars/assets/js/custom.js"></script>
 
 </body>
 </html>

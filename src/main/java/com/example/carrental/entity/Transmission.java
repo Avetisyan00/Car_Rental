@@ -2,5 +2,5 @@ package com.example.carrental.entity;
 
 public enum Transmission {
     MANUAL,
-    AUTOMATIC
+    AUTO
 }

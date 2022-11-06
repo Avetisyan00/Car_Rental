@@ -135,4 +135,10 @@
     <changeSet id="setDefaultValueForRating" author="eAvetisyan">
         <addDefaultValue tableName="user" columnName="rating" defaultValue="0"/>
     </changeSet>
+    <changeSet id="edit_production_year" author="LevonSahakyan">
+        <modifyDataType tableName="car" columnName="production_year" newDataType="INT(4)"/>
+    </changeSet>
+    <changeSet id="edit" author="LevonSahakyan">
+        <addNotNullConstraint tableName="car" columnName="production_year" columnDataType="INT(4)"/>
+    </changeSet>
 </databaseChangeLog>
