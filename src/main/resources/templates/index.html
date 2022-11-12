@@ -10,10 +10,6 @@
     <!-- FavIcon Link -->
     <link rel="icon" href="/supercars/assets/images/favicon.png" type="image/gif" size="16x16">
 
-    <!-- Google Fonts -->
-    <link href="../../css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
     <!-- Bootstrap CSS Link -->
     <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap.min.css">
 
@@ -29,20 +25,12 @@
     <!-- Wow Animation CSS Link -->
     <link rel="stylesheet" type="text/css" href="/supercars/assets/css/animate.css">
 
-     <!-- Main Style CSS Link -->
+    <!-- Main Style CSS Link -->
     <link rel="stylesheet" type="text/css" href="/supercars/assets/css/style.css">
 
 </head>
 <body class="fixed">
 <div class="main">
-
-    <!-- Loader Start &ndash;&gt;-->
-<!--   <div class="loader-box">-->
-<!--       <div class="loader">-->
-<!--           <img src="/supercars/assets/images/loader.gif" width="300" height="300" alt="Car">-->
-<!--       </div>-->
-<!--   </div>-->
-    <!-- Loader End -->
 
     <!--Header Start -->
     <header class="site-header">
@@ -78,6 +66,12 @@
                                         </ul>
                                     </li>
                                     <li><a href="/supercars/contact.html" title="Contact">Contact</a></li>
+                                    <th:block th:if="${currentUser == null}">
+                                        <li><a href="/loginPage">Login</a></li>
+                                    </th:block>
+                                    <th:block th:if="${currentUser != null}">
+                                        <li><a href="/logout">Logout</a></li>
+                                    </th:block>
                                 </ul>
                                 <div class="header-search-login">
                                     <div class="header-search">
@@ -155,73 +149,78 @@
                     <div class="main-cars-slider wow fadeIn" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <div class="cars-slider">
                             <div class="swiper-wrapper">
-                                 <div class="swiper-slide" th:each="car:${cars}">
-                                     <div class="car-box">
-                                         <div class="car-img">
-                                             <img th:src="@{/cars/getImage(fileName =${car.picUrl})}" width="430"
-                                                  height="220" alt="Aston Martin DBS">
-                                         </div>
-                                         <div class="car-box-text">
-                                             <h3 class="h3-title" th:text="${car.model + ' ' + car.name}"></h3>
-                                             <div class="price-reviews">
-                                                 <div class="car-price">
-                                                     <h4 class="h4-title"><span th:text="${car.pricePerHour}"></span> / Day</h4>
-                                                 </div>
-                                                 <div class="car-review">
-                                                     <p>50 Reviews</p>
-                                                     <ul>
-                                                         <li><img src="/supercars/assets/images/rating-icon.svg"
-                                                                  width="20" height="20" alt="Star"></li>
-                                                         <li><img src="/supercars/assets/images/rating-icon.svg"
-                                                                  width="20" height="20" alt="Star"></li>
-                                                         <li><img src="/supercars/assets/images/rating-icon.svg"
-                                                                  width="20" height="20" alt="Star"></li>
-                                                         <li><img src="/supercars/assets/images/rating-icon.svg"
-                                                                  width="20" height="20" alt="Star"></li>
-                                                         <li><img src="/supercars/assets/images/rating-icon.svg"
-                                                                  width="20" height="20" alt="Star"></li>
-                                                     </ul>
-                                                 </div>
-                                             </div>
-                                             <div class="cars-features-list">
-                                                 <div class="cars-features-box">
-                                                     <span class="icon"><img src="/supercars/assets/images/seat-icon.svg"
-                                                                             width="34" height="45" alt="Seat"></span>
-                                                     <p>4 Seats</p>
-                                                 </div>
-                                                 <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
-                                                      data-wow-delay="0.2s">
+                                <div class="swiper-slide" th:each="car:${cars}">
+                                    <div class="car-box">
+                                        <div class="car-img">
+                                            <img th:src="@{/cars/getImage(fileName =${car.picUrl})}" width="430"
+                                                 height="220" alt="Aston Martin DBS">
+                                        </div>
+                                        <div class="car-box-text">
+                                            <h3 class="h3-title" th:text="${car.model + ' ' + car.name}"></h3>
+                                            <div class="price-reviews">
+                                                <div class="car-price">
+                                                    <h4 class="h4-title"><span th:text="${car.pricePerHour}"></span> /
+                                                        Day</h4>
+                                                </div>
+                                                <div class="car-review">
+                                                    <p>50 Reviews</p>
+                                                    <ul>
+                                                        <li><img src="/supercars/assets/images/rating-icon.svg"
+                                                                 width="20" height="20" alt="Star"></li>
+                                                        <li><img src="/supercars/assets/images/rating-icon.svg"
+                                                                 width="20" height="20" alt="Star"></li>
+                                                        <li><img src="/supercars/assets/images/rating-icon.svg"
+                                                                 width="20" height="20" alt="Star"></li>
+                                                        <li><img src="/supercars/assets/images/rating-icon.svg"
+                                                                 width="20" height="20" alt="Star"></li>
+                                                        <li><img src="/supercars/assets/images/rating-icon.svg"
+                                                                 width="20" height="20" alt="Star"></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="cars-features-list">
+                                                <div class="cars-features-box">
+                                                     <span class="icon"><img
+                                                             src="/supercars/assets/images/seat-icon.svg"
+                                                             width="34" height="45" alt="Seat"></span>
+                                                    <p>4 Seats</p>
+                                                </div>
+                                                <div class="cars-features-box wow fadeup-animation"
+                                                     data-wow-duration="0.8s"
+                                                     data-wow-delay="0.2s">
                                                 <span class="icon"><img
                                                         src="/supercars/assets/images/wheel-drive-icon.svg" width="34"
                                                         height="45" alt="All Wheel Drive"></span>
-                                                     <p th:text="${car.steeringWheel}"></p>
-                                                 </div>
-                                                 <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
-                                                      data-wow-delay="0.2s">
-                                                     <span class="icon"><img src="/supercars/assets/images/gear-icon.svg"
-                                                                             width="30" height="45" alt="Auto"></span>
-                                                     <p th:text="${car.transmission}"></p>
-                                                 </div>
-                                                 <div class="cars-features-box wow fadeup-animation">
+                                                    <p th:text="${car.steeringWheel}"></p>
+                                                </div>
+                                                <div class="cars-features-box wow fadeup-animation"
+                                                     data-wow-duration="0.8s"
+                                                     data-wow-delay="0.2s">
+                                                     <span class="icon"><img
+                                                             src="/supercars/assets/images/gear-icon.svg"
+                                                             width="30" height="45" alt="Auto"></span>
+                                                    <p th:text="${car.transmission}"></p>
+                                                </div>
+                                                <div class="cars-features-box wow fadeup-animation">
                                                      <span class="icon"><img
                                                              src="/supercars/assets/images/petrol-icon.svg" width="45"
                                                              height="45" alt="Petrol"></span>
-                                                     <p th:text="${car.fuelType}"></p>
-                                                 </div>
-                                             </div>
-                                             <div class="cars-features-btn">
-                                                 <a href="/supercars/car-detail.html" class="sec-btn"
-                                                    title="Book Now"><span>Book Now</span></a>
-                                             </div>
-                                         </div>
-                                     </div>
+                                                    <p th:text="${car.fuelType}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="cars-features-btn">
+                                                <a href="/supercars/car-detail.html" class="sec-btn"
+                                                   title="Book Now"><span>Book Now</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-                                If we need navigation buttons
+                        </div>
+                    </div>
+                </div>
+            </div>
+            If we need navigation buttons
             <div class="swiper-arrow swiper-button-prev"><img src="/supercars/assets/images/arrow-icon.svg" width="30"
                                                               height="30" alt="Arrow"></div>
             <div class="swiper-arrow swiper-button-next"><img src="/supercars/assets/images/arrow-icon.svg" width="30"
@@ -327,256 +326,6 @@
         </section>
         <!--  Rental Deals End -->
 
-
-<!--             &lt;!&ndash; Customer Ecperience Start &ndash;&gt;&ndash;&gt;-->
-<!--             <section class="main-cutomer-experience">&ndash;&gt;-->
-<!--                 <div class="container">&ndash;&gt;-->
-<!--                     <div class="row">&ndash;&gt;-->
-<!--                         <div class="col-xl-6 col-lg-8 m-auto">&ndash;&gt;-->
-<!--                             <div class="title wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">&ndash;&gt;-->
-<!--                                 <h2 class="h2-title">We Are Ensuring <span>The Best Customer</span> Experience</h2>&ndash;&gt;-->
-<!--                                 <span class="title-line"></span>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                         <div class="col-12">&ndash;&gt;-->
-<!--                             <div class="cutomer-experience-list">&ndash;&gt;-->
-<!--                                 <div class="row">&ndash;&gt;-->
-<!--                                     <div class="col-lg-4 wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">&ndash;&gt;-->
-<!--                                         <div class="cutomer-experience-box one">&ndash;&gt;-->
-<!--                                             <span class="icon"><img src="assets/images/competitive-pricing-icon.svg" width="35" height="35" alt="Competitive Pricing"></span>&ndash;&gt;-->
-<!--                                             <h4 class="h4-title">Competitive <span>Pricing</span></h4>&ndash;&gt;-->
-<!--                                             <span class="line"></span>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="col-lg-4 wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.4s">&ndash;&gt;-->
-<!--                                         <div class="cutomer-experience-box two">&ndash;&gt;-->
-<!--                                             <span class="icon"><img src="assets/images/rent-on-budget-icon.svg" width="33" height="35" alt="Easier Rent On Your Budget"></span>&ndash;&gt;-->
-<!--                                             <h4 class="h4-title">Easier Rent On <span>Your Budget</span></h4>&ndash;&gt;-->
-<!--                                             <span class="line"></span>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="col-lg-4 wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">&ndash;&gt;-->
-<!--                                         <div class="cutomer-experience-box three">&ndash;&gt;-->
-<!--                                             <span class="icon"><img src="assets/images/payment-plan-icon.svg" width="40" height="35" alt="Most Flexible Payment Plans"></span>&ndash;&gt;-->
-<!--                                             <h4 class="h4-title">Most Flexible <span>Payment Plans</span></h4>&ndash;&gt;-->
-<!--                                             <span class="line"></span>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                                 <div class="cutomer-experience-img wow zoomIn" data-wow-duration="0.8s" data-wow-delay="0.4s">&ndash;&gt;-->
-<!--                                     <img src="assets/images/customer-experience-img.png" width="1170" height="792" alt="Customer Experience">&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                                 <div class="row">&ndash;&gt;-->
-<!--                                     <div class="col-lg-4 wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">&ndash;&gt;-->
-<!--                                         <div class="cutomer-experience-box four">&ndash;&gt;-->
-<!--                                             <span class="icon"><img src="assets/images/warranties-icon.svg" width="29" height="35" alt="The Best Extended Auto Warranties"></span>&ndash;&gt;-->
-<!--                                             <h4 class="h4-title">The Best Extended <span>Auto Warranties</span></h4>&ndash;&gt;-->
-<!--                                             <span class="line"></span>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="col-lg-4 wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.4s">&ndash;&gt;-->
-<!--                                         <div class="cutomer-experience-box five">&ndash;&gt;-->
-<!--                                             <span class="icon"><img src="assets/images/assistance-icon.svg" width="32" height="35" alt="Roadside Assistance 24/7"></span>&ndash;&gt;-->
-<!--                                             <h4 class="h4-title"><span>Roadside</span> Assistance 24/7</h4>&ndash;&gt;-->
-<!--                                             <span class="line"></span>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="col-lg-4 wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">&ndash;&gt;-->
-<!--                                         <div class="cutomer-experience-box six">&ndash;&gt;-->
-<!--                                             <span class="icon"><img src="assets/images/mechanic-icon.svg" width="41" height="35" alt="Your Choice Of Mechanic"></span>&ndash;&gt;-->
-<!--                                             <h4 class="h4-title">Your Choice Of <span>Mechanic</span></h4>&ndash;&gt;-->
-<!--                                             <span class="line"></span>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                     </div>&ndash;&gt;-->
-<!--                 </div>&ndash;&gt;-->
-<!--             </section>&ndash;&gt;-->
-<!--             &lt;!&ndash; Customer Ecperience End &ndash;&gt;&ndash;&gt;-->
-
-<!--             <section class="main-reviews bg">&ndash;&gt;-->
-<!--                 &lt;!&ndash; Reviews Start &ndash;&gt;&ndash;&gt;-->
-<!--                 <div class="container">&ndash;&gt;-->
-<!--                     <div class="row" id="reviews">&ndash;&gt;-->
-<!--                         <div class="col-lg-6">&ndash;&gt;-->
-<!--                             <div class="reviews-content">&ndash;&gt;-->
-<!--                                 <div class="title left wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">&ndash;&gt;-->
-<!--                                     <h2 class="h2-title">What <span>Our Customers</span> Say's</h2>&ndash;&gt;-->
-<!--                                     <span class="title-line"></span>&ndash;&gt;-->
-<!--                                     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                         <div class="col-lg-6">&ndash;&gt;-->
-<!--                             <div class="main-review-slider wow fadeIn" data-wow-duration="0.8s" data-wow-delay="0.3s">&ndash;&gt;-->
-<!--                                 <div class="reviews-slider">&ndash;&gt;-->
-<!--                                     <div class="swiper-wrapper">&ndash;&gt;-->
-<!--                                         <div class="swiper-slide">&ndash;&gt;-->
-<!--                                             <div class="review-box">&ndash;&gt;-->
-<!--                                                 <div class="review-img back-img" style="background-image: url('assets/images/review-img1.jpg');"></div>&ndash;&gt;-->
-<!--                                                 <div class="quote">&ndash;&gt;-->
-<!--                                                     <img src="assets/images/quote-icon.svg" width="42" height="30" alt="Quote">&ndash;&gt;-->
-<!--                                                 </div>&ndash;&gt;-->
-<!--                                                 <h5>John Doe</h5>&ndash;&gt;-->
-<!--                                                 <div class="review-text">&ndash;&gt;-->
-<!--                                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architect.</p>&ndash;&gt;-->
-<!--                                                 </div>&ndash;&gt;-->
-<!--                                             </div>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                         <div class="swiper-slide">&ndash;&gt;-->
-<!--                                             <div class="review-box">&ndash;&gt;-->
-<!--                                                 <div class="review-img back-img" style="background-image: url('assets/images/review-img2.jpg');"></div>&ndash;&gt;-->
-<!--                                                 <div class="quote">&ndash;&gt;-->
-<!--                                                     <img src="assets/images/quote-icon.svg" width="42" height="30" alt="Quote">&ndash;&gt;-->
-<!--                                                 </div>&ndash;&gt;-->
-<!--                                                 <h5>Naira Smith</h5>&ndash;&gt;-->
-<!--                                                 <div class="review-text">&ndash;&gt;-->
-<!--                                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architect.</p>&ndash;&gt;-->
-<!--                                                 </div>&ndash;&gt;-->
-<!--                                             </div>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                         <div class="swiper-slide">&ndash;&gt;-->
-<!--                                             <div class="review-box">&ndash;&gt;-->
-<!--                                                 <div class="review-img back-img" style="background-image: url('assets/images/review-img3.jpg');"></div>&ndash;&gt;-->
-<!--                                                 <div class="quote">&ndash;&gt;-->
-<!--                                                     <img src="assets/images/quote-icon.svg" width="42" height="30" alt="Quote">&ndash;&gt;-->
-<!--                                                 </div>&ndash;&gt;-->
-<!--                                                 <h5>Tony Adarson</h5>&ndash;&gt;-->
-<!--                                                 <div class="review-text">&ndash;&gt;-->
-<!--                                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architect.</p>&ndash;&gt;-->
-<!--                                                 </div>&ndash;&gt;-->
-<!--                                             </div>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     &lt;!&ndash; If we need navigation buttons &ndash;&gt;&ndash;&gt;-->
-<!--                                     <div class="swiper-arrow swiper-button-prev"><img src="assets/images/arrow-icon.svg" width="30" height="30" alt="Arrow"></div>&ndash;&gt;-->
-<!--                                     <div class="swiper-arrow swiper-button-next"><img src="assets/images/arrow-icon.svg" width="30" height="30" alt="Arrow"></div>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                     </div>&ndash;&gt;-->
-<!--                 </div>&ndash;&gt;-->
-<!--                 &lt;!&ndash; Reviews End &ndash;&gt;&ndash;&gt;-->
-
-<!--                 &lt;!&ndash; NewsLetter Start &ndash;&gt;&ndash;&gt;-->
-<!--                 <div class="container">&ndash;&gt;-->
-<!--                     <div class="row">&ndash;&gt;-->
-<!--                         <div class="col-xl-8 col-lg-10 m-auto">&ndash;&gt;-->
-<!--                             <div class="newsletter-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">&ndash;&gt;-->
-<!--                                 <div class="title">&ndash;&gt;-->
-<!--                                     <h2 class="h2-title">Subscribe Our <span>Newsletter</span></h2>&ndash;&gt;-->
-<!--                                     <span class="title-line"></span>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                                 <div class="newsletter-form">&ndash;&gt;-->
-<!--                                     <form>&ndash;&gt;-->
-<!--                                         <div class="form-box">&ndash;&gt;-->
-<!--                                             <div class="form-input-box">&ndash;&gt;-->
-<!--                                                 <img src="assets/images/form-mail-icon.svg" width="21" height="14" alt="Mail">&ndash;&gt;-->
-<!--                                                 <input type="email" class="form-input" placeholder="Enter Your Email Address..." required="">&ndash;&gt;-->
-<!--                                                 <button type="submit" class="sec-btn"><span>Subscribe</span></button>&ndash;&gt;-->
-<!--                                             </div>&ndash;&gt;-->
-<!--                                         </div>&ndash;&gt;-->
-<!--                                     </form>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                     </div>&ndash;&gt;-->
-<!--                 </div>&ndash;&gt;-->
-<!--                 &lt;!&ndash; NewsLetter End &ndash;&gt;&ndash;&gt;-->
-<!--             </section>&ndash;&gt;-->
-
-<!--             &lt;!&ndash; Blog Start &ndash;&gt;&ndash;&gt;-->
-<!--             <section class="main-our-blog">&ndash;&gt;-->
-<!--                 <div class="container">&ndash;&gt;-->
-<!--                     <div class="row">&ndash;&gt;-->
-<!--                         <div class="col-12">&ndash;&gt;-->
-<!--                             <div class="title wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">&ndash;&gt;-->
-<!--                                 <h2 class="h2-title">Our Latest <span>Blogs</span></h2>&ndash;&gt;-->
-<!--                                 <span class="title-line"></span>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                     </div>&ndash;&gt;-->
-<!--                     <div class="blog-list">&ndash;&gt;-->
-<!--                         <div class="row">&ndash;&gt;-->
-<!--                             <div class="col-lg-4">&ndash;&gt;-->
-<!--                                 <div class="blog-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.3s">&ndash;&gt;-->
-<!--                                     <div class="blog-img back-img" style="background-image: url('assets/images/blog-img1.jpg');">&ndash;&gt;-->
-<!--                                         <span class="blog-date">Jan 20, 2022</span>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="blog-text">&ndash;&gt;-->
-<!--                                         <h3 class="h3-title"><a href="blog-detail.html" title="Sed ut perspiciatis unde omnis iste.">Sed ut perspiciatis unde omnis iste.</a></h3>&ndash;&gt;-->
-<!--                                         <p>At vero eos et accusamus et iusto odiodig is simos blanditiis praesentium volup tatum deleniti atque corrupti quos.</p>&ndash;&gt;-->
-<!--                                         <a href="blog-detail.html" title="Read More">Read More <i class="fas fa-chevron-right"></i></a>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                             <div class="col-lg-4">&ndash;&gt;-->
-<!--                                 <div class="blog-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.4s">&ndash;&gt;-->
-<!--                                     <div class="blog-img back-img" style="background-image: url('assets/images/blog-img2.jpg');">&ndash;&gt;-->
-<!--                                         <span class="blog-date">Jan 20, 2022</span>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="blog-text">&ndash;&gt;-->
-<!--                                         <h3 class="h3-title"><a href="blog-detail.html" title="Sed ut perspiciatis unde omnis iste.">Sed ut perspiciatis unde omnis iste.</a></h3>&ndash;&gt;-->
-<!--                                         <p>At vero eos et accusamus et iusto odiodig is simos blanditiis praesentium volup tatum deleniti atque corrupti quos.</p>&ndash;&gt;-->
-<!--                                         <a href="blog-detail.html" title="Read More">Read More <i class="fas fa-chevron-right"></i></a>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                             <div class="col-lg-4">&ndash;&gt;-->
-<!--                                 <div class="blog-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">&ndash;&gt;-->
-<!--                                     <div class="blog-img back-img" style="background-image: url('assets/images/blog-img3.jpg');">&ndash;&gt;-->
-<!--                                         <span class="blog-date">Jan 20, 2022</span>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                     <div class="blog-text">&ndash;&gt;-->
-<!--                                         <h3 class="h3-title"><a href="blog-detail.html" title="Sed ut perspiciatis unde omnis iste.">Sed ut perspiciatis unde omnis iste.</a></h3>&ndash;&gt;-->
-<!--                                         <p>At vero eos et accusamus et iusto odiodig is simos blanditiis praesentium volup tatum deleniti atque corrupti quos.</p>&ndash;&gt;-->
-<!--                                         <a href="blog-detail.html" title="Read More">Read More <i class="fas fa-chevron-right"></i></a>&ndash;&gt;-->
-<!--                                     </div>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                     </div>&ndash;&gt;-->
-<!--                 </div>&ndash;&gt;-->
-<!--             </section>&ndash;&gt;-->
-<!--             &lt;!&ndash; Blog End &ndash;&gt;&ndash;&gt;-->
-
-<!--             &lt;!&ndash; Download App Start &ndash;&gt;&ndash;&gt;-->
-<!--             <section class="main-download-app">&ndash;&gt;-->
-<!--                 <div class="container">&ndash;&gt;-->
-<!--                     <div class="row align-items-center">&ndash;&gt;-->
-<!--                         <div class="col-lg-6">&ndash;&gt;-->
-<!--                             <div class="download-app-img wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">&ndash;&gt;-->
-<!--                                 <img src="assets/images/download-app-img.png" width="684" height="600" alt="Download App">&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                         <div class="col-lg-6">&ndash;&gt;-->
-<!--                             <div class="download-app-content wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">&ndash;&gt;-->
-<!--                                 <div class="title left">&ndash;&gt;-->
-<!--                                     <h2 class="h2-title">Download The <span>Free SuperCars</span> App</h2>&ndash;&gt;-->
-<!--                                     <span class="title-line"></span>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                                 <div class="download-app-text">&ndash;&gt;-->
-<!--                                     <p>Make a booking, unlock your car, and end your reservation all from our app.</p>&ndash;&gt;-->
-<!--                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                                 <div class="download-app-btn">&ndash;&gt;-->
-<!--                                     <a href="javascript:void(0);" title="Dowbload From Google Play Store">&ndash;&gt;-->
-<!--                                         <img src="assets/images/google-play-store.svg" width="200" height="60" alt="Google Play Store">&ndash;&gt;-->
-<!--                                     </a>&ndash;&gt;-->
-<!--                                     <a href="javascript:void(0);" title="Dowbload From App Store">&ndash;&gt;-->
-<!--                                         <img src="assets/images/apple-store.svg" width="200" height="60" alt="App Store">&ndash;&gt;-->
-<!--                                     </a>&ndash;&gt;-->
-<!--                                 </div>&ndash;&gt;-->
-<!--                             </div>&ndash;&gt;-->
-<!--                         </div>&ndash;&gt;-->
-<!--                     </div>&ndash;&gt;-->
-<!--                 </div>&ndash;&gt;-->
-<!--             </section>&ndash;&gt;-->
-<!--             &lt;!&ndash; Download App End &ndash;&gt;&ndash;&gt;-->
-
-<!--          Footer Start &ndash;&gt;-->
         <footer class="site-footer" id="contact">
             <div class="container">
                 <div class="row">
@@ -588,7 +337,7 @@
                                          alt="SuperCars">
                                 </a>
                             </div>
-                            <p>It is a  fact that a reader will be distracted by the readable content of
+                            <p>It is a fact that a reader will be distracted by the readable content of
                                 a page when looking at its layout. normal distribution of letters, as opposed to using
                                 'Content here.</p>
                             <div class="social-icon">
@@ -682,7 +431,7 @@
         </div>
         <!--Scroll To Top End -->
 
-        <!--Login Popup Start -->
+        <!-- Login Popup Start -->
         <div class="modal fade common-popup" id="login">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -694,29 +443,8 @@
                     <div class="common-popup-overflow">
                         <div class="common-popup-text">
                             <div class="contact-form">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-box">
-                                                <input type="email" class="form-input" placeholder="Enter Email Address"
-                                                       required="">
-                                            </div>
-                                            <div class="form-box">
-                                                <input type="password" class="form-input" placeholder="Enter Paaword"
-                                                       required="">
-                                            </div>
-                                            <div class="form-box checkbox">
-                                                <label for="remember_pass"><input type="checkbox" id="remember_pass">Remember
-                                                    Password</label>
-                                            </div>
-                                            <div class="form-box">
-                                                <button type="submit" class="sec-btn"><span>Login</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
                                 <div class="contact-form-text">
-                                    <p>Not have an account? <a href="javascript:void(0);" title="Singup">Singup</a></p>
+                                    <p>Not have an account? <a href="/registration" title="Singup">Singup</a></p>
                                 </div>
                             </div>
                         </div>
@@ -725,6 +453,7 @@
             </div>
         </div>
         <!-- Login Popup End -->
+
 
         <!-- Search Popup Start -->
         <div class="modal fade common-popup" id="search_car">
@@ -798,7 +527,7 @@
             </div>
         </div>
     </section>
-        </div>
+</div>
 <!-- Search Popup End -->
 
 <!--Jquery JS Link -->
