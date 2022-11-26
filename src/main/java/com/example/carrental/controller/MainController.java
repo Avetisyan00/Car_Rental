@@ -1,7 +1,7 @@
 package com.example.carrental.controller;
 
 import com.example.carrental.entity.Car;
-import com.example.carrental.service.CarService;
+import com.example.carrental.service.impl.CarServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +17,10 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController {
 
-    private final CarService carService;
+public class MainController  {
+
+    private final CarServiceImpl carService;
 
     @GetMapping("/")
     public String mainPage(ModelMap modelMap) {

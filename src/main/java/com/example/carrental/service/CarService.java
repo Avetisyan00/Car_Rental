@@ -2,63 +2,26 @@ package com.example.carrental.service;
 
 import com.example.carrental.entity.Car;
 import com.example.carrental.entity.Category;
-import com.example.carrental.repository.CarRepository;
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class CarService {
+public interface CarService {
 
-    private final CarRepository carRepository;
+    List<Car> findAllByCategory(Category category);
 
+    List<Car> findAll();
 
-    @Value("${car.rental.images.folder}")
-    private String folderPath;
+    void deleteById(int id);
 
-    public Page<Car> findAllPg(Pageable pageable)
-    {
-        return carRepository.findAll(pageable);
-    }
-    public List<Car> findAll(){
-        return carRepository.findAll();
-    }
+    Page<Car> findAllPg(Pageable pageable);
 
-    public List<Car> findAllByCategory(Category category) {
-        return carRepository.findAllByCategory(category);
-    }
-    public byte[] getCarService(String fileName) throws IOException {
-        InputStream inputStream = new FileInputStream(folderPath + File.separator + fileName);
-        return IOUtils.toByteArray(inputStream);
-    }
+    void saveCar(Car car, MultipartFile file);
 
-    public void deleteById(int id) {
-        carRepository.deleteById(id);
-    }
+    Optional<Car> findById(int id);
 
-    public void saveCar(Car car, MultipartFile file) throws IOException {
-        if (!file.isEmpty() && file.getSize() > 0) {
-            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            File newFile = new File(folderPath + File.separator + fileName);
-            file.transferTo(newFile);
-            car.setPicUrl(fileName);
-        }
-        carRepository.save(car);
-    }
-
-    public Optional<Car> findById(int id) {
-        return carRepository.findById(id);
-    }
+     byte[] getCarService(String fileName);
 }
