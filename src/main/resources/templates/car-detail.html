@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en-us" xmlns="http://www.w3.org/1999/html">
+<html lang="en-us" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>SuperCars - Car Detail</title>
     <meta charset="utf-8">
@@ -8,29 +8,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- FavIcon Link -->
-    <link rel="icon" href="assets/images/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="/supercars/assets/images/favicon.png" type="image/gif" sizes="16x16">
 
     <!-- Google Fonts -->
     <link href="../../../css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200;300;400;500;600;700;800&display=swap"
           rel="stylesheet">
 
     <!-- Bootstrap CSS Link -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap.min.css">
 
     <!-- Datepicker CSS Link -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/bootstrap-datepicker.min.css">
 
     <!-- Swiper Slider CSS Link -->
-    <link rel="stylesheet" type="text/css" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/swiper-bundle.min.css">
 
     <!-- Fancybox CSS Link -->
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/jquery.fancybox.min.css">
 
     <!-- Wow Animation CSS Link -->
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/animate.css">
 
     <!-- Main Style CSS Link -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/supercars/assets/css/style.css">
 
 </head>
 <body class="fixed">
@@ -39,7 +39,7 @@
     <!-- Loader Start -->
     <div class="loader-box">
         <div class="loader">
-            <img src="assets/images/loader.gif" width="300" height="300" alt="Car">
+            <img src="/supercars/assets/images/loader.gif" width="300" height="300" alt="Car">
         </div>
     </div>
     <!-- Loader End -->
@@ -51,8 +51,9 @@
                 <div class="col-lg-3">
                     <div class="site-brnading">
                         <a href="../../templates/index.html" title="SuperCars">
-                            <img src="assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
-                            <img src="assets/images/logo.png" class="sticky" width="188" height="60" alt="SuperCars">
+                            <img src="/supercars/assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
+                            <img src="/supercars/assets/images/logo.png" class="sticky" width="188" height="60"
+                                 alt="SuperCars">
                         </a>
                     </div>
                 </div>
@@ -108,8 +109,9 @@
     <!-- Header End -->
 
     <!-- Banner Start -->
-    <section class="main-banner inner-banner back-img" style="background-image: url('assets/images/cars-banner.jpg');">
-        <span class="shape"><img src="assets/images/inner-banner-shape.svg" alt="shape"></span>
+    <section class="main-banner inner-banner back-img"
+             style="background-image: url('/supercars/assets/images/cars-banner.jpg');">
+        <span class="shape"><img src="/supercars/assets/images/inner-banner-shape.svg" alt="shape"></span>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -144,42 +146,54 @@
                                    href="#car_images">Images</a>
                             </li>
                         </ul>
+                        <p th:if="${currentUser != null && car.dealer != null && currentUser.id == car.dealer.id}">You
+                            could choose 5 images</p>
+                        <span th:if="${errorMessage != null}" th:text="${errorMessage}" style="color: red"></span>
+                        <form th:if="${currentUser != null && car.dealer != null && currentUser.id == car.dealer.id}"
+                              action="/car-detail/add" method="post" enctype="multipart/form-data">
+                            <input type="file" name="carImage" multiple="multiple">
+                            <input type="hidden" name="carId" th:value="${car.id}">
+                            <input type="submit" value="Add Images">
+                        </form>
                         <div class="tab-pane" id="car_images">
                             <div class="interior-exterior-content">
                                 <div class="interior-exterior-slider">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <a href="assets/images/interior-exterior-img1.jpg" data-fancybox="image">
-                                                <div class="interior-exterior-slide-img back-img"
-                                                     style="background-image: url('assets/images/interior-exterior-img1.jpg');"></div>
+                                        <div th:each="image:${images}" class="swiper-slide">
+                                            <a href="/supercars/assets/images/interior-exterior-img1.jpg"
+                                               data-fancybox="image">
+                                                <div class="interior-exterior-slide-img back-img">
+                                                    <img th:if="${image.car.id == car.id}"
+                                                         th:src="@{/cars/detail/getImage(fileName = ${image.picUrl})}"
+                                                         style="height: 480px;width: 1200px ">
+                                                </div>
                                             </a>
+                                            <a th:if="${currentUser != null&& car.dealer != null && currentUser.id == car.dealer.id &&image.car.id == car.id}"
+                                               th:href="@{/cars/detail/remove(id = ${image.id})}" style="color: red">
+                                                Delete Image </a>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <a href="assets/images/interior-exterior-img2.jpg" data-fancybox="image">
-                                                <div class="interior-exterior-slide-img back-img"
-                                                     style="background-image: url('assets/images/interior-exterior-img2.jpg');"></div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="assets/images/interior-exterior-img3.jpg" data-fancybox="image">
-                                                <div class="interior-exterior-slide-img back-img"
-                                                     style="background-image: url('assets/images/interior-exterior-img3.jpg');"></div>
-                                            </a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="assets/images/interior-exterior-img4.jpg" data-fancybox="image">
-                                                <div class="interior-exterior-slide-img back-img"
-                                                     style="background-image: url('assets/images/interior-exterior-img4.jpg');"></div>
-                                            </a>
-                                        </div>
+                                        <!--                                        <div class="swiper-slide">-->
+                                        <!--                                            <a href="/supercars/assets/images/interior-exterior-img3.jpg" data-fancybox="image">-->
+                                        <!--                                                <div class="interior-exterior-slide-img back-img"-->
+                                        <!--                                                     style="background-image: url('/supercars/assets/images/interior-exterior-img3.jpg');"></div>-->
+                                        <!--                                            </a>-->
+                                        <!--                                        </div>-->
+                                        <!--                                        <div class="swiper-slide">-->
+                                        <!--                                            <a href="/supercars/assets/images/interior-exterior-img4.jpg" data-fancybox="image">-->
+                                        <!--                                                <div class="interior-exterior-slide-img back-img"-->
+                                        <!--                                                    style="background-image: url('/supercars/assets/images/interior-exterior-img4.jpg');"></div>-->
+                                        <!--                                            </a>-->
+                                        <!--                                        </div>-->
                                     </div>
                                     <!-- If we need navigation buttons -->
-                                    <div class="swiper-arrow swiper-button-prev"><img src="assets/images/arrow-icon.svg"
-                                                                                      width="30" height="30"
-                                                                                      alt="Arrow"></div>
-                                    <div class="swiper-arrow swiper-button-next"><img src="assets/images/arrow-icon.svg"
-                                                                                      width="30" height="30"
-                                                                                      alt="Arrow"></div>
+                                    <div class="swiper-arrow swiper-button-prev"><img
+                                            src="/supercars/assets/images/arrow-icon.svg"
+                                            width="30" height="30"
+                                            alt="Arrow"></div>
+                                    <div class="swiper-arrow swiper-button-next"><img
+                                            src="/supercars/assets/images/arrow-icon.svg"
+                                            width="30" height="30"
+                                            alt="Arrow"></div>
                                 </div>
                             </div>
                         </div>
@@ -190,16 +204,22 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="car-detail-content wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                    <h2 class="h2-title">Chevrolet</h2>
-                    <h3 class="h3-title">$59 <span>/ Day</span></h3>
+                    <h2 th:text="${car.name}" class="h2-title"></h2>
+                    <h2 th:text="${car.model}" class="h2-title"></h2>
+                    <h3 class="h3-title" th:text="${car.pricePerHour}"><span>/ Hour</span></h3>
                     <div class="car-detail-rating">
                         <p>(50 Reviews)</p>
                         <ul>
-                            <li><img src="assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                            <li><img src="assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                            <li><img src="assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                            <li><img src="assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
-                            <li><img src="assets/images/rating-icon.svg" width="20" height="20" alt="Star"></li>
+                            <li><img src="/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star">
+                            </li>
+                            <li><img src="/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star">
+                            </li>
+                            <li><img src="/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star">
+                            </li>
+                            <li><img src="/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star">
+                            </li>
+                            <li><img src="/supercars/assets/images/rating-icon.svg" width="20" height="20" alt="Star">
+                            </li>
                         </ul>
                     </div>
                     <div class="car-detail-text">
@@ -212,11 +232,20 @@
                     </div>
                     <div class="car-detail-features">
                         <ul>
-                            <li><span>Passengers :</span> 4</li>
-                            <li><span>Suitcase :</span> 1 Large, 2 Small</li>
-                            <li><span>Doors :</span> 2</li>
-                            <li><span>Engine :</span> 3.9L V8 32V GDI DOHC Twin Turbo</li>
-                            <li><span>Fuel Type :</span> Gasoline, Premium unleaded</li>
+                            <li><span>Production Year :</span>
+                                <p th:text="${car.productionYear}"></p></li>
+                            <li><span>Fuel Type :</span>
+                                <p th:text="${car.fuelType}"></p></li>
+                            <li><span>Category :</span>
+                                <p th:text="${car.category}"></p></li>
+                            <li><span>Drive Unit :</span>
+                                <p th:text="${car.driveUnit}"></p></li>
+                            <li><span>Transmission :</span>
+                                <p th:text="${car.transmission}"></p></li>
+                            <li><span>Steering Wheel :</span>
+                                <p th:text="${car.steeringWheel}"></p></li>
+                            <li><span>Color :</span>
+                                <p th:text="${car.color}"></p></li>
                         </ul>
                     </div>
                 </div>
@@ -240,7 +269,8 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-input-box form-box">
-                                                        <img src="assets/images/form-user-icon.svg" width="12"
+                                                        <img src="/supercars/assets/images/form-user-icon.svg"
+                                                             width="12"
                                                              height="14" alt="User">
                                                         <input type="text" class="form-input" placeholder="Full Name"
                                                                required="">
@@ -248,7 +278,8 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-input-box form-box">
-                                                        <img src="assets/images/form-mail-icon.svg" width="12"
+                                                        <img src="/supercars/assets/images/form-mail-icon.svg"
+                                                             width="12"
                                                              height="8" alt="Mail">
                                                         <input type="email" class="form-input"
                                                                placeholder="Email Address" required="">
@@ -275,407 +306,344 @@
                 </div>
     </section>
 </div>
-    <!-- Car Detail End -->
+<!-- Car Detail End -->
 
-    <section class="main-reviews bg">
-        <!-- Reviews Start -->
-        <div class="container">
-            <div class="row" id="reviews">
-                <div class="col-lg-6">
-                    <div class="reviews-content">
-                        <div class="title left wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                            <h2 class="h2-title">What <span>Our Customers</span> Say's</h2>
-                            <span class="title-line"></span>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                                occaecati.</p>
-                        </div>
+<section class="main-reviews bg">
+    <!-- Reviews Start -->
+    <div class="container">
+        <div class="row" id="reviews">
+            <div class="col-lg-6">
+                <div class="reviews-content">
+                    <div class="title left wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        <h2 class="h2-title">What <span>Our Customers</span> Say's</h2>
+                        <span class="title-line"></span>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+                            occaecati.</p>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="main-review-slider wow fadeIn" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <div class="reviews-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="review-box">
-                                        <div class="review-img back-img"
-                                             style="background-image: url('assets/images/review-img1.jpg');"></div>
-                                        <div class="quote">
-                                            <img src="assets/images/quote-icon.svg" width="42" height="30" alt="Quote">
-                                        </div>
-                                        <h5>John Doe</h5>
-                                        <div class="review-text">
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                                illo inventore veritatis et quasi architect.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-box">
-                                        <div class="review-img back-img"
-                                             style="background-image: url('assets/images/review-img2.jpg');"></div>
-                                        <div class="quote">
-                                            <img src="assets/images/quote-icon.svg" width="42" height="30" alt="Quote">
-                                        </div>
-                                        <h5>Naira Smith</h5>
-                                        <div class="review-text">
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                                illo inventore veritatis et quasi architect.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-box">
-                                        <div class="review-img back-img"
-                                             style="background-image: url('assets/images/review-img3.jpg');"></div>
-                                        <div class="quote">
-                                            <img src="assets/images/quote-icon.svg" width="42" height="30" alt="Quote">
-                                        </div>
-                                        <h5>Tony Adarson</h5>
-                                        <div class="review-text">
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                                illo inventore veritatis et quasi architect.</p>
-                                        </div>
-                                    </div>
-                                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="main-review" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                    <div class="swiper-wrapper">
+                        <div th:if="${car.dealer != null}" class="review-box">
+                            <div class="review-img back-img"
+                                 style="background-image: url('/supercars/assets/images/review-img1.jpg');"></div>
+                            <div class="quote">
+                                <img src="/supercars/assets/images/quote-icon.svg" width="42" height="30" alt="Quote">
                             </div>
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-arrow swiper-button-prev"><img src="assets/images/arrow-icon.svg"
-                                                                              width="30" height="30" alt="Arrow"></div>
-                            <div class="swiper-arrow swiper-button-next"><img src="assets/images/arrow-icon.svg"
-                                                                              width="30" height="30" alt="Arrow"></div>
+                            <h5 th:text="${car.dealer.name}"></h5>
+                            <h5 th:text="${car.dealer.surname}"></h5>
+                            <div class="review-text">
+                                <p th:text="${car.dealer.email}"></p>
+                                <p th:text="${car.dealer.phoneNumber}"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Reviews End -->
+    </div>
+    <!-- Reviews End -->
+</section>
 
-        <!-- NewsLetter Start -->
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-10 m-auto">
-                    <div class="newsletter-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <div class="title">
-                            <h2 class="h2-title">Subscribe Our <span>Newsletter</span></h2>
-                            <span class="title-line"></span>
+<!-- Download App Start -->
+<section class="main-download-app">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="download-app-img wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <img src="/supercars/assets/images/download-app-img.png" width="684" height="600"
+                         alt="Download App">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="download-app-content wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <div class="title left">
+                        <h2 class="h2-title">Download The <span>Free SuperCars</span> App</h2>
+                        <span class="title-line"></span>
+                    </div>
+                    <div class="download-app-text">
+                        <p>Make a booking, unlock your car, and end your reservation all from our app.</p>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
+                            suffered alteration in some form, by injected humour, or randomised words which don't
+                            look even slightly believable.</p>
+                    </div>
+                    <div class="download-app-btn">
+                        <a href="javascript:void(0);" title="Dowbload From Google Play Store">
+                            <img src="/supercars/assets/images/google-play-store.svg" width="200" height="60"
+                                 alt="Google Play Store">
+                        </a>
+                        <a href="javascript:void(0);" title="Dowbload From App Store">
+                            <img src="/supercars/assets/images/apple-store.svg" width="200" height="60" alt="App Store">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Download App End -->
+
+<!-- Footer Start -->
+<footer class="site-footer" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="footer-info wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <div class="footer-logo">
+                        <a href="../../templates/index.html" title="SuperCars">
+                            <img src="/supercars/assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
+                        </a>
+                    </div>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a
+                        page when looking at its layout. normal distribution of letters, as opposed to using
+                        'Content here.</p>
+                    <div class="social-icon">
+                        <a href="javascript:void(0);" title="Follow on Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="javascript:void(0);" title="Follow on Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="javascript:void(0);" title="Follow on Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+                <div class="quick-links wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <h3 class="h3-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="../../templates/index.html" title="Home">Home</a></li>
+                        <li><a href="about-us.html" title="About Us">About Us</a></li>
+                        <li><a href="../../templates/cars.html" title="Cars">Cars</a></li>
+                        <li><a href="contact.html" title="Contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6">
+                <div class="quick-links wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+
+                    <ul>
+                        <li><a href="../../templates/cars.html" title="Wedding Rides">Wedding Rides</a></li>
+                        <li><a href="../../templates/cars.html" title="Corporate Rides">Corporate Rides</a></li>
+                        <li><a href="../../templates/cars.html" title="Executive Rides">Executive Rides</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="footer-contact wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                    <h3 class="h3-title">Contact Us</h3>
+                    <div class="contact-link">
+                        <div class="contact-link-box">
+                            <a href="tel:1234567890" title="Call on +91 1234567890">
+                                <span class="icon"><i class="fas fa-phone-alt"></i></span>
+                                Phone Number
+                                <span class="text">+91 123-4567-890</span>
+                            </a>
                         </div>
-                        <div class="newsletter-form">
-                            <form>
-                                <div class="form-box">
-                                    <div class="form-input-box">
-                                        <img src="assets/images/form-mail-icon.svg" width="21" height="14" alt="Mail">
-                                        <input type="email" class="form-input" placeholder="Enter Your Email Address..."
+                        <div class="contact-link-box">
+                            <a href="mailto:email@example.com" title="Mail on email@example.com">
+                                <span class="icon"><i class="fas fa-envelope"></i></span>
+                                Email Address
+                                <span class="text">email@example.com</span>
+                            </a>
+                        </div>
+                        <div class="contact-link-box">
+                            <a href="javascript:void(0);"
+                               title="2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York">
+                                <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="text">2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 order-lg-1 order-2">
+                <div class="copy-right">
+                    <p>Copyright © 2021 <a href="https://geekcodelab.com/" title="GeekCodeLab" target="_blank">GeekCodeLab</a>.
+                        All Rights Reserved.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-2 order-1">
+                <div class="footer-bottom-link">
+                    <ul>
+                        <li><a href="javascript:void(0);" title="Privacy Policy">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0);" title="Terms Of Use">Terms Of Use</a></li>
+                        <li><a href="javascript:void(0);" title="Cookie Policy">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Scroll To Top Start -->
+<div class="scroll-to-top">
+    <span><img src="/supercars/assets/images/scroll-top-car.png" alt="car"></span>
+</div>
+<!-- Scroll To Top End -->
+
+<!-- Login Popup Start -->
+<div class="modal fade common-popup" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="popup-title">
+                <h3 class="h3-title">Login</h3>
+                <button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="common-popup-overflow">
+                <div class="common-popup-text">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-box">
+                                        <input type="email" class="form-input" placeholder="Enter Email Address"
                                                required="">
-                                        <button type="submit" class="sec-btn"><span>Subscribe</span></button>
+                                    </div>
+                                    <div class="form-box">
+                                        <input type="password" class="form-input" placeholder="Enter Paaword"
+                                               required="">
+                                    </div>
+                                    <div class="form-box checkbox">
+                                        <label for="remember_pass"><input type="checkbox" id="remember_pass">Remember
+                                            Password</label>
+                                    </div>
+                                    <div class="form-box">
+                                        <button type="submit" class="sec-btn"><span>Login</span></button>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- NewsLetter End -->
-    </section>
-
-    <!-- Download App Start -->
-    <section class="main-download-app">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="download-app-img wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <img src="assets/images/download-app-img.png" width="684" height="600" alt="Download App">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="download-app-content wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <div class="title left">
-                            <h2 class="h2-title">Download The <span>Free SuperCars</span> App</h2>
-                            <span class="title-line"></span>
-                        </div>
-                        <div class="download-app-text">
-                            <p>Make a booking, unlock your car, and end your reservation all from our app.</p>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                suffered alteration in some form, by injected humour, or randomised words which don't
-                                look even slightly believable.</p>
-                        </div>
-                        <div class="download-app-btn">
-                            <a href="javascript:void(0);" title="Dowbload From Google Play Store">
-                                <img src="assets/images/google-play-store.svg" width="200" height="60"
-                                     alt="Google Play Store">
-                            </a>
-                            <a href="javascript:void(0);" title="Dowbload From App Store">
-                                <img src="assets/images/apple-store.svg" width="200" height="60" alt="App Store">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Download App End -->
-
-    <!-- Footer Start -->
-    <footer class="site-footer" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-info wow right-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <div class="footer-logo">
-                            <a href="../../templates/index.html" title="SuperCars">
-                                <img src="assets/images/logo-white.png" width="188" height="60" alt="SuperCars">
-                            </a>
-                        </div>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page when looking at its layout. normal distribution of letters, as opposed to using
-                            'Content here.</p>
-                        <div class="social-icon">
-                            <a href="javascript:void(0);" title="Follow on Facebook"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0);" title="Follow on Instagram"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a href="javascript:void(0);" title="Follow on Twitter"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="quick-links wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h3 class="h3-title">Quick Links</h3>
-                        <ul>
-                            <li><a href="../../templates/index.html" title="Home">Home</a></li>
-                            <li><a href="about-us.html" title="About Us">About Us</a></li>
-                            <li><a href="../../templates/cars.html" title="Cars">Cars</a></li>
-                            <li><a href="contact.html" title="Contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="quick-links wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-
-                        <ul>
-                            <li><a href="../../templates/cars.html" title="Wedding Rides">Wedding Rides</a></li>
-                            <li><a href="../../templates/cars.html" title="Corporate Rides">Corporate Rides</a></li>
-                            <li><a href="../../templates/cars.html" title="Executive Rides">Executive Rides</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="footer-contact wow left-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h3 class="h3-title">Contact Us</h3>
-                        <div class="contact-link">
-                            <div class="contact-link-box">
-                                <a href="tel:1234567890" title="Call on +91 1234567890">
-                                    <span class="icon"><i class="fas fa-phone-alt"></i></span>
-                                    Phone Number
-                                    <span class="text">+91 123-4567-890</span>
-                                </a>
                             </div>
-                            <div class="contact-link-box">
-                                <a href="mailto:email@example.com" title="Mail on email@example.com">
-                                    <span class="icon"><i class="fas fa-envelope"></i></span>
-                                    Email Address
-                                    <span class="text">email@example.com</span>
-                                </a>
-                            </div>
-                            <div class="contact-link-box">
-                                <a href="javascript:void(0);"
-                                   title="2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York">
-                                    <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                                    <span class="text">2746 Victoriya Park Avenue, Toronto, Ontario M2J 4A8, New York</span>
-                                </a>
-                            </div>
+                        </form>
+                        <div class="contact-form-text">
+                            <p>Not have an account? <a href="javascript:void(0);" title="Singup">Singup</a></p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 order-lg-1 order-2">
-                    <div class="copy-right">
-                        <p>Copyright © 2021 <a href="https://geekcodelab.com/" title="GeekCodeLab" target="_blank">GeekCodeLab</a>.
-                            All Rights Reserved.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-2 order-1">
-                    <div class="footer-bottom-link">
-                        <ul>
-                            <li><a href="javascript:void(0);" title="Privacy Policy">Privacy Policy</a></li>
-                            <li><a href="javascript:void(0);" title="Terms Of Use">Terms Of Use</a></li>
-                            <li><a href="javascript:void(0);" title="Cookie Policy">Cookie Policy</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+</div>
+<!-- Login Popup End -->
 
-    <!-- Scroll To Top Start -->
-    <div class="scroll-to-top">
-        <span><img src="assets/images/scroll-top-car.png" alt="car"></span>
-    </div>
-    <!-- Scroll To Top End -->
-
-    <!-- Login Popup Start -->
-    <div class="modal fade common-popup" id="login">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="popup-title">
-                    <h3 class="h3-title">Login</h3>
-                    <button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i
-                            class="fas fa-times"></i></button>
-                </div>
-                <div class="common-popup-overflow">
-                    <div class="common-popup-text">
-                        <div class="contact-form">
-                            <form>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-box">
-                                            <input type="email" class="form-input" placeholder="Enter Email Address"
+<!-- Search Popup Start -->
+<div class="modal fade common-popup" id="search_car">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="popup-title">
+                <h3 class="h3-title">Search Car</h3>
+                <button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="common-popup-overflow">
+                <div class="common-popup-text">
+                    <div class="search-popup-form">
+                        <form>
+                            <div class="search-car-form">
+                                <div class="car-form-box">
+                                    <div class="form-box">
+                                        <label>Pick Up Location</label>
+                                        <div class="form-input-box">
+                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"
+                                                 alt="Map">
+                                            <input type="text" class="form-input" placeholder="Kingstone Upon Hull"
                                                    required="">
                                         </div>
-                                        <div class="form-box">
-                                            <input type="password" class="form-input" placeholder="Enter Paaword"
+                                    </div>
+                                </div>
+                                <div class="car-form-box">
+                                    <div class="form-box">
+                                        <label>Return Location</label>
+                                        <div class="form-input-box">
+                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"
+                                                 alt="Map">
+                                            <input type="text" class="form-input" placeholder="Heathrow Airport"
                                                    required="">
                                         </div>
-                                        <div class="form-box checkbox">
-                                            <label for="remember_pass"><input type="checkbox" id="remember_pass">Remember
-                                                Password</label>
-                                        </div>
-                                        <div class="form-box">
-                                            <button type="submit" class="sec-btn"><span>Login</span></button>
+                                    </div>
+                                </div>
+                                <div class="car-form-box">
+                                    <div class="form-box">
+                                        <label>Pick Up Date</label>
+                                        <div class="form-input-box input-group date">
+                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
+                                                 height="14"
+                                                 alt="Calendar">
+                                            <span class="input-group-addon"></span>
+                                            <input type="text" class="form-input">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="contact-form-text">
-                                <p>Not have an account? <a href="javascript:void(0);" title="Singup">Singup</a></p>
+                                <div class="car-form-box">
+                                    <div class="form-box">
+                                        <label>Return Date</label>
+                                        <div class="form-input-box input-group date">
+                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
+                                                 height="14"
+                                                 alt="Calendar">
+                                            <span class="input-group-addon"></span>
+                                            <input type="text" class="form-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car-form-box">
+                                    <div class="form-box">
+                                        <button type="submit" class="sec-btn"><span>Search Car</span></button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Login Popup End -->
-
-    <!-- Search Popup Start -->
-    <div class="modal fade common-popup" id="search_car">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="popup-title">
-                    <h3 class="h3-title">Search Car</h3>
-                    <button type="button" class="close close-popup" data-bs-dismiss="modal" aria-label="Close"><i
-                            class="fas fa-times"></i></button>
-                </div>
-                <div class="common-popup-overflow">
-                    <div class="common-popup-text">
-                        <div class="search-popup-form">
-                            <form>
-                                <div class="search-car-form">
-                                    <div class="car-form-box">
-                                        <div class="form-box">
-                                            <label>Pick Up Location</label>
-                                            <div class="form-input-box">
-                                                <img src="assets/images/form-map-icon.svg" width="12" height="14"
-                                                     alt="Map">
-                                                <input type="text" class="form-input" placeholder="Kingstone Upon Hull"
-                                                       required="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="car-form-box">
-                                        <div class="form-box">
-                                            <label>Return Location</label>
-                                            <div class="form-input-box">
-                                                <img src="assets/images/form-map-icon.svg" width="12" height="14"
-                                                     alt="Map">
-                                                <input type="text" class="form-input" placeholder="Heathrow Airport"
-                                                       required="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="car-form-box">
-                                        <div class="form-box">
-                                            <label>Pick Up Date</label>
-                                            <div class="form-input-box input-group date">
-                                                <img src="assets/images/form-calendar-icon.svg" width="14" height="14"
-                                                     alt="Calendar">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-input">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="car-form-box">
-                                        <div class="form-box">
-                                            <label>Return Date</label>
-                                            <div class="form-input-box input-group date">
-                                                <img src="assets/images/form-calendar-icon.svg" width="14" height="14"
-                                                     alt="Calendar">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-input">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="car-form-box">
-                                        <div class="form-box">
-                                            <button type="submit" class="sec-btn"><span>Search Car</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search Popup End -->
+</div>
+<!-- Search Popup End -->
 
 </div>
 
 <!-- Jquery JS Link -->
-<script src="assets/js/jquery.min.js"></script>
+<script src="/supercars/assets/js/jquery.min.js"></script>
 
 <!-- Bootstrap JS Link -->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
+<script src="/supercars/assets/js/bootstrap.min.js"></script>
+<script src="/supercars/assets/js/popper.min.js"></script>
 
 <!-- Datepicker JS Link -->
-<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<script src="/supercars/assets/js/bootstrap-datepicker.min.js"></script>
 
 <!-- Swiper Slider JS Link -->
-<script src="assets/js/swiper-bundle.min.js"></script>
+<script src="/supercars/assets/js/swiper-bundle.min.js"></script>
 
 <!-- Fancybox JS Link -->
-<script src="assets/js/jquery.fancybox.min.js"></script>
+<script src="/supercars/assets/js/jquery.fancybox.min.js"></script>
 
 <!-- 360 View JS Link -->
-<script src="assets/js/js-cloudimage-360-view.min.js"></script>
+<script src="/supercars/assets/js/js-cloudimage-360-view.min.js"></script>
 
 <!-- Font Awesome JS Link -->
-<script src="assets/js/font-awesome.min.js"></script>
+<script src="/supercars/assets/js/font-awesome.min.js"></script>
 
 <!-- Wow Animation JS Link -->
-<script src="assets/js/wow.min.js"></script>
+<script src="/supercars/assets/js/wow.min.js"></script>
 
 <!-- Three JS Link -->
-<script src="assets/js/three.min.js"></script>
+<script src="/supercars/assets/js/three.min.js"></script>
 
 <!-- Panolens JS Link -->
-<script src="assets/js/panolens.min.js"></script>
+<script src="/supercars/assets/js/panolens.min.js"></script>
 
 <!-- Custom JS Link -->
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/custom-interior.js"></script>
+<script src="/supercars/assets/js/custom.js"></script>
+<script src="/supercars/assets/js/custom-interior.js"></script>
 
 </body>
 </html>

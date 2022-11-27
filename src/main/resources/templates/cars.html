@@ -66,13 +66,18 @@
                                 <i class="menu-background middle"></i>
                                 <i class="menu-background bottom"></i>
                                 <ul>
-                                    <li><a href="/" title="Home">Home</a></li>
+                                    <li th:class="${currentUrl == '/' ? 'active':''}"><a href="/" title="Home">Home</a>
+                                    </li>
                                     <li><a href="/supercars/about-us.html" title="About Us">About Us</a></li>
-                                    <li><a href="/cars/add" title="Add">Add</a></li>
+                                    <li th:class="${currentUrl == '/cars/add' ? 'active':''}"><a href="/cars/add"
+                                                                                                 title="Add">Add</a>
+                                    </li>
                                     <li class="sub-items active">
                                         <a href="javascript:void(0);" title="Cars">Cars</a>
                                         <ul class="sub-menu">
-                                            <li class="active"><a href="/cars" title="Car List">Car List</a></li>
+                                            <li th:class="${currentUrl == '/cars' ? 'active':''}"><a href="/cars"
+                                                                                                     title="Car List">Car
+                                                List</a></li>
                                             <li><a href="/supercars/car-detail.html" title="Car Detail">Car Detail</a>
                                             </li>
                                         </ul>
@@ -137,52 +142,72 @@
             <div class="row">
                 <div class="col-12">
                     <div class="search-car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <form>
+                        <form action="/cars" method="get">
                             <div class="search-car-form">
                                 <div class="car-form-box">
                                     <div class="form-box">
-                                        <label>Pick Up Location</label>
+                                        <label>Search</label>
                                         <div class="form-input-box">
                                             <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"
                                                  alt="Map">
-                                            <input type="text" class="form-input" placeholder="Kingstone Upon Hull"
-                                                   required="">
+                                            <input type="text" name="keyword" class="form-input"
+                                                   th:value="${keyword == null ?'':keyword}" placeholder="Search">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="car-form-box">
-                                    <div class="form-box">
-                                        <label>Return Location</label>
-                                        <div class="form-input-box">
-                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"
-                                                 alt="Map">
-                                            <input type="text" class="form-input" placeholder="Heathrow Airport"
-                                                   required="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="car-form-box">
-                                    <div class="form-box">
-                                        <label>Pick Up Date</label>
-                                        <div class="form-input-box input-group date">
-                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
-                                                 height="14" alt="Calendar">
-                                            <span class="input-group-addon"></span>
-                                            <input type="text" class="form-input">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="car-form-box">
-                                    <div class="form-box">
-                                        <label>Return Date</label>
-                                        <div class="form-input-box input-group date">
-                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"
-                                                 height="14" alt="Calendar">
-                                            <span class="input-group-addon"></span>
-                                            <input type="text" class="form-input">
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                                <div class="car-form-box">-->
+                                <!--                                    <div class="form-box">-->
+                                <!--                                        <label>Min Price</label>-->
+                                <!--                                        <div class="form-input-box">-->
+                                <!--                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"-->
+                                <!--                                                 alt="Map">-->
+                                <!--                                            <input type="number" name="minPrice" class="form-input" th:value="${minPrice == null ?'': minPrice}" placeholder="Please input car's minPrice">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="car-form-box">-->
+                                <!--                                    <div class="form-box">-->
+                                <!--                                        <label>Max Price</label>-->
+                                <!--                                        <div class="form-input-box">-->
+                                <!--                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"-->
+                                <!--                                                 alt="Map">-->
+                                <!--                                            <input type="number" name="maxPrice" class="form-input"  th:value="${maxPrice == null ?'': maxPrice}" placeholder="Please input car's maxPrice">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="car-form-box">-->
+                                <!--                                    <div class="form-box">-->
+                                <!--                                        <label>Return Location</label>-->
+                                <!--                                        <div class="form-input-box">-->
+                                <!--                                            <img src="/supercars/assets/images/form-map-icon.svg" width="12" height="14"-->
+                                <!--                                                 alt="Map">-->
+                                <!--                                            <input type="text" class="form-input" placeholder="Heathrow Airport"-->
+                                <!--                                                   required="">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="car-form-box">-->
+                                <!--                                    <div class="form-box">-->
+                                <!--                                        <label>Pick Up Date</label>-->
+                                <!--                                        <div class="form-input-box input-group date">-->
+                                <!--                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"-->
+                                <!--                                                 height="14" alt="Calendar">-->
+                                <!--                                            <span class="input-group-addon"></span>-->
+                                <!--                                            <input type="text" class="form-input">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="car-form-box">-->
+                                <!--                                    <div class="form-box">-->
+                                <!--                                        <label>Return Date</label>-->
+                                <!--                                        <div class="form-input-box input-group date">-->
+                                <!--                                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14"-->
+                                <!--                                                 height="14" alt="Calendar">-->
+                                <!--                                            <span class="input-group-addon"></span>-->
+                                <!--                                            <input type="text" class="form-input">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                                 <div class="car-form-box">
                                     <div class="form-box">
                                         <button type="submit" class="sec-btn"><span>Search Car</span></button>
@@ -207,15 +232,18 @@
                              data-wow-delay="0.2s">
                             <h3 class="h3-title">Category</h3>
                             <ul>
+                                <li><a th:if="${currentUser != null}"
+                                       th:href="@{/cars/getByDealer(dealerId = ${currentUser.id})}" title="All">My
+                                    Cars</a></li>
                                 <li><a href="/cars" title="All">All</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'SEDAN')}" >Sedan</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'SPORTCAR')}" >SportCar</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'STATION_WAGON')}" >StationWagon</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'HATCHBACK')}" >HatchBack</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'CONVERTIBLE')}" >Convertible</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'SUV')}" >Suv</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'MINIVAN')}" >Minivan</a></li>
-                                <li><a th:href="@{/cars/getByCategory(category= 'PICKUP')}" >Pickup</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'SEDAN')}">Sedan</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'SPORTCAR')}">SportCar</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'STATION_WAGON')}">StationWagon</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'HATCHBACK')}">HatchBack</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'CONVERTIBLE')}">Convertible</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'SUV')}">Suv</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'MINIVAN')}">Minivan</a></li>
+                                <li><a th:href="@{/cars/getByCategory(category= 'PICKUP')}">Pickup</a></li>
                                 <li><a th:href="@{/cars/getByCategory(category = 'JEEP' )}">Jeep</a></li>
                                 <li><a th:href="@{/cars/getByCategory(category = 'ELECTRIC' )}">Electric</a></li>
                                 <li><a th:href="@{/cars/getByCategory(category = 'CUV' )}">Cuv</a></li>
@@ -260,7 +288,8 @@
                                         <h3 class="h3-title" th:text="${car.model + ' ' +car.name}"></h3>
                                         <div class="price-reviews">
                                             <div class="car-price">
-                                                <h4 class="h4-title"><span th:text="${car.pricePerHour}"></span> / HOUR</h4>
+                                                <h4 class="h4-title"><span th:text="${car.pricePerHour}"></span> / HOUR
+                                                </h4>
                                             </div>
                                             <div class="car-review">
                                                 <p>50 Reviews</p>
@@ -301,21 +330,25 @@
                                                         height="45" alt="All Wheel Drive"></span>
                                                 <p th:text="${car.steeringWheel}"></p>
                                             </div>
-                                            <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
+                                            <div th:if="${currentUser != null && car.dealer != null && currentUser.id == car.dealer.id}"
+                                                 class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
                                                  data-wow-delay="0.2s">
                                                 <span class="icon"><a th:href="@{/cars/delete(id = ${car.id})}"><img
-                                                                        src="/supercars/assets/images/delete.png"width="34" height="45"></a></span>
+                                                        src="/supercars/assets/images/delete.png" width="34"
+                                                        height="45"></a></span>
                                                 <p>Remove</p>
                                             </div>
-                                            <div class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
+                                            <div th:if="${currentUser != null && car.dealer != null && currentUser.id == car.dealer.id}"
+                                                 class="cars-features-box wow fadeup-animation" data-wow-duration="0.8s"
                                                  data-wow-delay="0.2s">
                                                 <span class="icon"><a th:href="@{/cars/edit(id = ${car.id})}"><img
-                                                                        src="/supercars/assets/images/edit1.png"width="34" height="45"></a></span>
+                                                        src="/supercars/assets/images/edit1.png" width="34" height="45"></a></span>
                                                 <p>Edit</p>
                                             </div>
                                         </div>
                                         <div class="cars-features-btn">
-                                            <a href="/supercars/car-detail.html" class="sec-btn" title="Book Now"><span>Book Now</span></a>
+                                            <a th:href="@{/cars/detail(id = ${car.id})}" class="sec-btn"
+                                               title="Book Now"><span>Book Now</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -328,7 +361,8 @@
                                             <li><a href="javascript:void(0);" class="arrow" title="Previous"><i
                                                     class="fas fa-angle-double-left" aria-hidden="true"></i></a></li>
                                             <li th:if="${cars.totalPages > 0}" th:each="pageNumber:${pageNumbers}">
-                                                <a th:href="@{/cars(size = ${cars.size},page = ${pageNumber})}" th:text="${pageNumber}"></a>
+                                                <a th:href="@{/cars(size = ${cars.size},page = ${pageNumber})}"
+                                                   th:text="${pageNumber}"></a>
                                             </li>
                                             <li><a href="javascript:void(0);" class="arrow" title="Next"><i
                                                     class="fas fa-angle-double-right" aria-hidden="true"></i></a></li>

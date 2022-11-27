@@ -24,8 +24,9 @@ public class MainController {
     @GetMapping("/")
     public String mainPage(ModelMap modelMap) {
         List<Car> cars = carService.findAll();
-        modelMap.addAttribute("cars",cars);
+        modelMap.addAttribute("cars", cars);
         return "index";
+
     }
 
     @GetMapping("/logout")

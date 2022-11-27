@@ -23,7 +23,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final MailService mailService;
     private final BCryptPasswordEncoder passwordEncoder;
-    @Value("${car.rental.images.folder}")
+    @Value("${car.rental.user.images.folder}")
     private String folderPath;
 
     public void saveUserAsClient(@ModelAttribute User user, MultipartFile file) throws DuplicateEmailException, IOException, MessagingException {
