@@ -9,6 +9,7 @@ import com.example.carrental.repository.CarRepository;
 import com.example.carrental.repository.UserRepository;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
@@ -37,10 +39,12 @@ public class CarServiceImpl implements CarService {
     private String folderPath;
 
     public List<Car> findAll() {
+        log.info("Find all cars from the database");
         return carRepository.findAll();
     }
 
     public List<Car> findAllByCategory(Category category) {
+        log.info("Find all cars by category from the database");
         return carRepository.findAllByCategory(category);
     }
 
@@ -49,6 +53,7 @@ public class CarServiceImpl implements CarService {
             InputStream inputStream = new FileInputStream(folderPath + File.separator + fileName);
             return IOUtils.toByteArray(inputStream);
         } catch (IOException e) {
+            log.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
 
@@ -56,6 +61,7 @@ public class CarServiceImpl implements CarService {
 
     public void deleteById(int id) {
         carRepository.deleteById(id);
+        log.info("The car has been deleted the id{} ", id);
         List<Image> allByCarId = carDetailRepository.findAll();
         for (Image image : allByCarId) {
             if (image.getCar() == null) {
@@ -77,17 +83,21 @@ public class CarServiceImpl implements CarService {
                 car.setDealer(byId.get());
             }
             carRepository.save(car);
+            log.info("The car has been saved");
         } catch (IOException e) {
+            log.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public Optional<Car> findById(int id) {
+        log.info("Find car by id {}", id + " from the database");
         return carRepository.findById(id);
     }
 
     public Page<Car> Search(Pageable pageable, String keyword) {
         if (keyword != null) {
+            log.info("Find all cars from the database which keyword is {}", keyword);
             return carRepository.searchCarByNameOrModel(pageable, keyword);
         }
         return carRepository.findAll(pageable);
@@ -96,6 +106,7 @@ public class CarServiceImpl implements CarService {
     public List<Car> getByDealer(int dealerId) {
         List<Car> carByDealerId = carRepository.findCarByDealerId(dealerId);
         if (!carByDealerId.isEmpty()) {
+            log.info("Find cars by dealerId {} ", dealerId + " from the database");
             return carByDealerId;
         }
         return carRepository.findAll();

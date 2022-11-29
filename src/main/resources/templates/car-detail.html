@@ -164,12 +164,12 @@
                                                data-fancybox="image">
                                                 <div class="interior-exterior-slide-img back-img">
                                                     <img th:if="${image.car.id == car.id}"
-                                                         th:src="@{/cars/detail/getImage(fileName = ${image.picUrl})}"
+                                                         th:src="@{/cars-detail/getImage(fileName = ${image.picUrl})}"
                                                          style="height: 480px;width: 1200px ">
                                                 </div>
                                             </a>
                                             <a th:if="${currentUser != null&& car.dealer != null && currentUser.id == car.dealer.id &&image.car.id == car.id}"
-                                               th:href="@{/cars/detail/remove(id = ${image.id})}" style="color: red">
+                                               th:href="@{/cars-detail/remove(id = ${image.id})}" style="color: red">
                                                 Delete Image </a>
                                         </div>
                                         <!--                                        <div class="swiper-slide">-->

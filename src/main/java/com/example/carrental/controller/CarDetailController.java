@@ -5,6 +5,7 @@ import com.example.carrental.entity.Image;
 import com.example.carrental.service.CarDetailService;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class CarDetailController {
 
     private final CarDetailService carDetailService;
@@ -35,11 +37,12 @@ public class CarDetailController {
     @PostMapping("/car-detail/add")
     public String carDetailAdd(@RequestParam("carId") int carId,
                                @RequestParam("carImage") MultipartFile[] files) {
+        log.info("/car-detail/add has been called");
         carDetailService.save(carId, files);
         return "redirect:/cars/detail?id=" + carId;
     }
 
-    @GetMapping(value = "/cars/detail/getImage", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/cars-detail/getImage", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getImage(@RequestParam("fileName") String fileName) {
         return carDetailService.getCarService(fileName);
     }
@@ -47,9 +50,10 @@ public class CarDetailController {
     /**
      * This method show car and images of car
      */
-    @GetMapping("/cars/detail")
+    @GetMapping("/cars-detail")
     public String carDetailPage(@RequestParam("id") int id,
                                 ModelMap modelMap) {
+        log.info("/cars-detail has been called");
         Optional<Car> byId = carService.findById(id);
         byId.ifPresent(car -> modelMap.addAttribute("car", car));
         List<Image> all = carDetailService.findAllByCar(id);
@@ -57,8 +61,9 @@ public class CarDetailController {
         return "car-detail";
     }
 
-    @GetMapping("/cars/detail/remove")
+    @GetMapping("/cars-detail/remove")
     public String deleteCarDetail(@RequestParam("id") int id) {
+        log.info("/cars-detail/remove has been called");
         carDetailService.delete(id);
         return "redirect:/cars";
     }

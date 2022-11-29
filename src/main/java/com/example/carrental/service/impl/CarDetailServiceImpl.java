@@ -6,6 +6,7 @@ import com.example.carrental.repository.CarDetailRepository;
 import com.example.carrental.repository.CarRepository;
 import com.example.carrental.service.CarDetailService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CarDetailServiceImpl implements CarDetailService {
 
     private final CarDetailRepository carDetailRepository;
@@ -44,10 +46,12 @@ public class CarDetailServiceImpl implements CarDetailService {
                             file.transferTo(newFile);
                             newImage.setPicUrl(fileName);
                             carDetailRepository.save(newImage);
+                            log.info("The image has been saved and carId{}", carId);
                             if (index == 5) {
                                 break;
                             }
                         } catch (IOException e) {
+                            log.error(e.getMessage());
                             throw new RuntimeException(e.getMessage());
 
                         }
@@ -63,15 +67,18 @@ public class CarDetailServiceImpl implements CarDetailService {
             InputStream inputStream = new FileInputStream(folderPath + File.separator + fileName);
             return IOUtils.toByteArray(inputStream);
         } catch (IOException e) {
+            log.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public List<Image> findAllByCar(int id) {
+        log.info("Find all images by carId {}", id + " from the database");
         return carDetailRepository.findAllByCar_Id(id);
     }
 
     public void delete(int id) {
         carDetailRepository.deleteById(id);
+        log.info("The image has been deleted the id {}", id);
     }
 }
