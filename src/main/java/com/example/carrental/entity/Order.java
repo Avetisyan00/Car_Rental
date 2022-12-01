@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -20,12 +20,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date time;
+    private LocalDate orderStart;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate orderEnd;
     @ManyToOne
-    private User user;
+    private User driver;
     @ManyToOne
     private Car car;
-    private double price;
+    private double amount;
 
 
 }

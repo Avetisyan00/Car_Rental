@@ -207,6 +207,8 @@
                     <h2 th:text="${car.name}" class="h2-title"></h2>
                     <h2 th:text="${car.model}" class="h2-title"></h2>
                     <h3 class="h3-title" th:text="${car.pricePerHour}"><span>/ Hour</span></h3>
+                    <a th:if="${error == null}" th:href="@{/order(id = ${car.id})}" class="sec-btn" title="Book Now"><span>Book Now</span></a>
+                    <p th:if="${error != null}" th:text="${error}"></p>
                     <div class="car-detail-rating">
                         <p>(50 Reviews)</p>
                         <ul>
