@@ -44,7 +44,7 @@ public class CarDetailController {
                                @RequestParam("carImage") MultipartFile[] files) {
         log.info("/car-detail/add has been called");
         carDetailService.save(carId, files);
-        return "redirect:/cars/detail?id=" + carId;
+        return "redirect:/cars-detail?id=" + carId;
     }
 
     @GetMapping(value = "/cars-detail/getImage", produces = MediaType.IMAGE_JPEG_VALUE)

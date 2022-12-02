@@ -60,6 +60,9 @@ public class CarServiceImpl implements CarService {
     }
 
     public void deleteById(int id) {
+        if (id == 0) {
+            throw new RuntimeException("id can't be 0");
+        }
         carRepository.deleteById(id);
         log.info("The car has been deleted the id{} ", id);
         List<Image> allByCarId = carDetailRepository.findAll();
@@ -71,26 +74,35 @@ public class CarServiceImpl implements CarService {
     }
 
     public void saveCar(Car car, MultipartFile file, int dealerId) {
-        try {
-            if (!file.isEmpty() && file.getSize() > 0) {
-                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-                File newFile = new File(folderPath + File.separator + fileName);
-                file.transferTo(newFile);
-                car.setPicUrl(fileName);
+        if (car == null) {
+            throw new RuntimeException("Car can't be null");
+        }
+        if (file.getContentType() != null && file.getContentType().contains("image")) {
+            try {
+                if (!file.isEmpty() && file.getSize() > 0) {
+                    String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                    File newFile = new File(folderPath + File.separator + fileName);
+                    file.transferTo(newFile);
+                    car.setPicUrl(fileName);
+                }
+                Optional<User> byId = userRepository.findById(dealerId);
+                if (byId.isPresent() && car.getDealer() == null) {
+                    car.setDealer(byId.get());
+                }
+                carRepository.save(car);
+
+                log.info("The car has been saved");
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                throw new RuntimeException(e.getMessage());
             }
-            Optional<User> byId = userRepository.findById(dealerId);
-            if (byId.isPresent() && car.getDealer() == null) {
-                car.setDealer(byId.get());
-            }
-            carRepository.save(car);
-            log.info("The car has been saved");
-        } catch (IOException e) {
-            log.error(e.getMessage());
-            throw new RuntimeException(e.getMessage());
         }
     }
 
     public Optional<Car> findById(int id) {
+        if (id == 0) {
+            throw new RuntimeException("id can't be 0");
+        }
         log.info("Find car by id {}", id + " from the database");
         return carRepository.findById(id);
     }
