@@ -1,9 +1,8 @@
 package com.example.carrental.controller;
 
 import com.example.carrental.entity.Car;
-import com.example.carrental.service.CarService;
+import com.example.carrental.service.impl.CarServiceImpl;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -18,18 +17,16 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
-public class MainController {
 
-    private final CarService carService;
+public class MainController  {
+
+    private final CarServiceImpl carService;
 
     @GetMapping("/")
     public String mainPage(ModelMap modelMap) {
-        log.info("/ has been called");
         List<Car> cars = carService.findAll();
-        modelMap.addAttribute("cars", cars);
+        modelMap.addAttribute("cars",cars);
         return "index";
-
     }
 
     @GetMapping("/logout")

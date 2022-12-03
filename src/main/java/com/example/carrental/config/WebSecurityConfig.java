@@ -1,5 +1,6 @@
 package com.example.carrental.config;
 
+import com.example.carrental.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,10 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/registration/client").permitAll()
-                .antMatchers("/loginPage").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/client/").hasAuthority(Role.CLIENT.name())
+                .antMatchers("/dealer/").hasAuthority(Role.DEALER.name())
+                .antMatchers("/driver/").hasAuthority(Role.DRIVER.name())
+                .antMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
                 .anyRequest()
                 .permitAll()
                 .and()

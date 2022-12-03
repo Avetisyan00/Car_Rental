@@ -24,6 +24,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("username does not exist");
         } else {
             return new CurrentUser(byEmail.get());
+
         }
     }
 }

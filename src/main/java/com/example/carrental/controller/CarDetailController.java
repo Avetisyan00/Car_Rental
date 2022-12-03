@@ -79,5 +79,4 @@ public class CarDetailController {
         carDetailService.delete(id);
         return "redirect:/cars";
     }
-
 }
