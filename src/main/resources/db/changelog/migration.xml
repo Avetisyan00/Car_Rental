@@ -104,7 +104,6 @@
                 <constraints nullable="false" foreignKeyName="driver_id" referencedTableName="user"
                              referencedColumnNames="id"/>
             </column>
-
             <column name="car_id" type="BIGINT">
                 <constraints nullable="false" foreignKeyName="car_id" referencedTableName="car"
                              referencedColumnNames="id"/>
@@ -140,5 +139,46 @@
     </changeSet>
     <changeSet id="edit" author="LevonSahakyan">
         <addNotNullConstraint tableName="car" columnName="production_year" columnDataType="INT(4)"/>
+    </changeSet>
+    <changeSet id="create_table" author="lSahakyan">
+        <createTable tableName="image">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="pic_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_id" type="BIGINT">
+                <constraints foreignKeyName="car1_id" referencedTableName="car" referencedColumnNames="id"
+                nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="dropForeignKey" author="lSahakyan">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyTableName="image" foreignKeyName="car1_id"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="car" constraintName="car1_id"/>
+    </changeSet>
+    <changeSet id="add" author="lSahakyan">
+        <addColumn tableName="image">
+            <column name="car_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="addForeignKey" author="lSahakyan">
+        <addForeignKeyConstraint baseTableName="image" baseColumnNames="car_id" constraintName="car1_id" referencedTableName="car"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="ChangeColumn" author="lSahakyan">
+        <addColumn tableName="car_order">
+            <column name="order_start" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <renameColumn tableName="car_order" oldColumnName="order_time" newColumnName="order_end" columnDataType="DATETIME"/>
+        <dropNotNullConstraint tableName="car_order" columnName="driver_id" columnDataType="BIGINT"/>
+        <addNotNullConstraint tableName="car_order" columnName="car_id" columnDataType="BIGINT"/>
     </changeSet>
 </databaseChangeLog>

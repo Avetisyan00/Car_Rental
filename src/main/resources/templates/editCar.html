@@ -132,134 +132,149 @@
         </div>
     </section>
     <div class="row">
-<div class="col-12">
-    <div class="search-car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">
-        <form action="/cars/edit" method="post" enctype="multipart/form-data">
-            <div class="search-car-form">
-                <div class="car-form-box" style="margin-left: 40px">
-                    <div class="form-box">
-                        <input type="hidden" name="id" th:value="${car.id}">
-                        <label>Model</label>
-                        <div class="form-input-box">
-                            <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
-                            <input type="text" name="model" class="form-input" th:value="${car.model}"
-                                   required="">
+        <div class="col-12">
+            <div class="search-car-box wow fadeup-animation" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                <form action="/cars/edit" method="post" enctype="multipart/form-data">
+                    <div class="search-car-form">
+                        <div class="car-form-box" style="margin-left: 40px">
+                            <div class="form-box">
+                                <input type="hidden" name="id" th:value="${car.id}">
+                                <label>Model</label>
+                                <div class="form-input-box">
+                                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14"
+                                         alt="User">
+                                    <input type="text" name="model" class="form-input" th:value="${car.model}"
+                                           required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="car-form-box" style="margin-left: 40px">
+                            <div class="form-box">
+                                <label>Name</label>
+                                <div class="form-input-box">
+                                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14"
+                                         alt="User">
+                                    <input type="text" name="name" class="form-input" th:value="${car.name}"
+                                           required="">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="margin-left: 40px">
+                            <label>Transmission</label><br>
+                            <select name="transmission">
+                                <option th:value="${car.transmission}" th:text="${car.transmission}"></option>
+                                <option th:if="${car.transmission.name() != 'MANUAL'}" value="MANUAL">MANUAL</option>
+                                <option th:if="${car.transmission.name() != 'AUTO'}" value="AUTO">AUTO</option>
+                            </select><br>
+                        </div>
+                        <div style="margin-left: 40px">
+                            <label>DriveUnit</label><br>
+                            <select name="driveUnit">
+                                <option th:value="${car.driveUnit}" th:text="${car.driveUnit}"></option>
+                                <option th:if="${car.driveUnit.name() != 'AWD'}" value="AWD">AWD</option>
+                                <option th:if="${car.driveUnit.name() != '_4WD'}" value="_4WD">_4WD</option>
+                                <option th:if="${car.driveUnit.name() != 'FWD'}" value="FWD">FWD</option>
+                                <option th:if="${car.driveUnit.name() != 'RWD'}" value="RWD">RWD</option>
+                            </select><br>
+                        </div>
+                        <div style="margin-left: 40px">
+                            <label>Category</label><br>
+                            <select name="category">
+                                <option th:value="${car.category}" th:text="${car.category}"></option>
+                                <option th:if="${car.category.name() != 'SEDAN'}" value="SEDAN">SEDAN</option>
+                                <option th:if="${car.category.name() != 'COUPE'}" value="COUPE">COUPE</option>
+                                <option th:if="${car.category.name() != 'SPORTCAR'}" value="SPORTCAR">SPORTCAR</option>
+                                <option th:if="${car.category.name() != 'STATION_WAGON'}" value="STATION_WAGON">
+                                    STATION_WAGON
+                                </option>
+                                <option th:if="${car.category.name() != 'HATCHBACK'}" value="HATCHBACK">HATCHBACK
+                                </option>
+                                <option th:if="${car.category.name() != 'CONVERTIBLE'}" value="CONVERTIBLE">
+                                    CONVERTIBLE
+                                </option>
+                                <option th:if="${car.category.name() != 'SUV'}" value="SUV">SUV</option>
+                                <option th:if="${car.category.name() != 'MINIVAN'}" value="MINIVAN">MINIVAN</option>
+                                <option th:if="${car.category.name() != 'PICKUP'}" value="PICKUP">PICKUP</option>
+                                <option th:if="${car.category.name() != 'JEEP'}" value="JEEP">JEEP</option>
+                                <option th:if="${car.category.name() != 'ELECTRIC'}" value="ELECTRIC">ELECTRIC</option>
+                                <option th:if="${car.category.name() != 'CUV'}" value="CUV">CUV</option>
+                                <option th:if="${car.category.name() != 'SPYDER'}" value="SPYDER">SPYDER</option>
+                                <option th:if="${car.category.name() != 'HOT_HATCH'}" value="HOT_HATCH">HOT_HATCH
+                                </option>
+                                <option th:if="${car.category.name() != 'LIMOUSINE'}" value="LIMOUSINE">LIMOUSINE
+                                </option>
+                                <option th:if="${car.category.name() != 'UTE'}" value="UTE">UTE</option>
+                                <option th:if="${car.category.name() != 'PONY_CAR'}" value="PONY_CAR">PONY_CAR</option>
+                                <option th:if="${car.category.name() != 'SPORTS_SEDAN'}" value="SPORTS_SEDAN">
+                                    SPORTS_SEDAN
+                                </option>
+                            </select><br>
+                        </div>
+                        <div style="margin-left: 40px">
+                            <label>Steering Wheel</label><br>
+                            <select name="steeringWheel">
+                                <option th:value="${car.steeringWheel}" th:text="${car.steeringWheel}"></option>
+                                <option th:if="${car.steeringWheel.name() != 'LEFT'}" value="LEFT">LEFT</option>
+                                <option th:if="${car.steeringWheel.name() != 'RIGHT'}" value="RIGHT">RIGHT</option>
+                            </select>
+                        </div>
+                        <div style="margin-left: 40px">
+                            <label>Fuel Type</label><br>
+                            <select name="fuelType">
+                                <option th:value="${car.fuelType}" th:text="${car.fuelType}"></option>
+                                <option th:if="${car.fuelType.name() != 'DIESEL'}" value="DIESEL">DIESEL</option>
+                                <option th:if="${car.fuelType.name() != 'GASOLINE'}" value="GASOLINE">GASOLINE</option>
+                                <option th:if="${car.fuelType.name() != 'PETROL'}" value="PETROL">PETROL</option>
+                                <option th:if="${car.fuelType.name() != 'ELECTRIC'}" value="ELECTRIC">ELECTRIC</option>
+                            </select>
+                        </div>
+                        <div class="car-form-box" style="margin-left: 40px">
+                            <div class="form-box">
+                                <label>Color</label>
+                                <div class="form-input-box">
+                                    <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14"
+                                         alt="User">
+                                    <input type="text" name="color" class="form-input" th:value="${car.color}"
+                                           required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="car-form-box" style="margin-left: 40px">
+                            <div class="form-box">
+                                <label>Production Year</label>
+                                <div class="form-input-box">
+                                    <img src="/supercars/assets/images/form-calendar-icon.svg" width="14" height="14">
+                                    <input type="number" name="productionYear" th:value="${car.productionYear}"
+                                           class="form-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-left: 40px">
+                            <label>Picture</label>
+                            <input type="hidden" name="picUrl" th:value="${car.picUrl}">
+                            <input type="file" name="carImage">
+                        </div>
+                        <div class="car-form-box" style="margin-left: 40px">
+                            <div class="form-box">
+                                <label>Price</label>
+                                <span class="input-group-addon"></span>
+                                <input type="number" name="pricePerHour" th:value="${car.pricePerHour}"
+                                       class="form-input">
+                            </div>
                         </div>
                     </div>
-                </div>
-               <div class="car-form-box" style="margin-left: 40px">
-                    <div class="form-box">
-                        <label>Name</label>
-                        <div class="form-input-box">
-                            <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
-                            <input type="text" name="name" class="form-input" th:value="${car.name}"
-                                   required="">
+                    <input type="hidden" name="dealerId" th:value="${car.dealer.id}">
+                    <br>
+                    <div class="car-form-box" style="margin-left: 42%;">
+                        <div class="form-box">
+                            <button type="submit" class="sec-btn"><span>Edit Car</span></button>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div style="margin-left: 40px">
-                <label>Transmission</label><br>
-                <select name="transmission">
-                    <option  th:value="${car.transmission}" th:text="${car.transmission}"></option>
-                    <option th:if="${car.transmission.name() != 'MANUAL'}" value="MANUAL">MANUAL</option>
-                    <option th:if="${car.transmission.name() != 'AUTO'}" value="AUTO">AUTO</option>
-                </select><br>
-                </div>
-                <div style="margin-left: 40px">
-                <label>DriveUnit</label><br>
-                <select name="driveUnit">
-                    <option  th:value="${car.driveUnit}" th:text="${car.driveUnit}"></option>
-                    <option th:if="${car.driveUnit.name() != 'AWD'}" value="AWD">AWD</option>
-                    <option th:if="${car.driveUnit.name() != '_4WD'}" value="_4WD">_4WD</option>
-                    <option th:if="${car.driveUnit.name() != 'FWD'}" value="FWD">FWD</option>
-                    <option th:if="${car.driveUnit.name() != 'RWD'}" value="RWD">RWD</option>
-                </select><br>
-                </div>
-                <div style="margin-left: 40px">
-                <label>Category</label><br>
-                <select name="category">
-                    <option th:value="${car.category}" th:text="${car.category}"></option>
-                    <option th:if="${car.category.name() != 'SEDAN'}" value="SEDAN">SEDAN</option>
-                    <option th:if="${car.category.name() != 'COUPE'}" value="COUPE">COUPE</option>
-                    <option th:if="${car.category.name() != 'SPORTCAR'}" value="SPORTCAR">SPORTCAR</option>
-                    <option th:if="${car.category.name() != 'STATION_WAGON'}" value="STATION_WAGON">STATION_WAGON</option>
-                    <option th:if="${car.category.name() != 'HATCHBACK'}" value="HATCHBACK">HATCHBACK</option>
-                    <option th:if="${car.category.name() != 'CONVERTIBLE'}" value="CONVERTIBLE">CONVERTIBLE</option>
-                    <option th:if="${car.category.name() != 'SUV'}" value="SUV">SUV</option>
-                    <option th:if="${car.category.name() != 'MINIVAN'}" value="MINIVAN">MINIVAN</option>
-                    <option th:if="${car.category.name() != 'PICKUP'}" value="PICKUP">PICKUP</option>
-                    <option th:if="${car.category.name() != 'JEEP'}" value="JEEP">JEEP</option>
-                    <option th:if="${car.category.name() != 'ELECTRIC'}" value="ELECTRIC">ELECTRIC</option>
-                    <option th:if="${car.category.name() != 'CUV'}" value="CUV">CUV</option>
-                    <option th:if="${car.category.name() != 'SPYDER'}" value="SPYDER">SPYDER</option>
-                    <option th:if="${car.category.name() != 'HOT_HATCH'}" value="HOT_HATCH">HOT_HATCH</option>
-                    <option th:if="${car.category.name() != 'LIMOUSINE'}" value="LIMOUSINE">LIMOUSINE</option>
-                    <option th:if="${car.category.name() != 'UTE'}" value="UTE">UTE</option>
-                    <option th:if="${car.category.name() != 'PONY_CAR'}" value="PONY_CAR">PONY_CAR</option>
-                    <option th:if="${car.category.name() != 'SPORTS_SEDAN'}" value="SPORTS_SEDAN">SPORTS_SEDAN</option>
-                </select><br>
-                </div>
-                <div style="margin-left: 40px">
-                <label>Steering Wheel</label><br>
-                <select name="steeringWheel">
-                  <option th:value="${car.steeringWheel}" th:text="${car.steeringWheel}"></option>
-                    <option th:if="${car.steeringWheel.name() != 'LEFT'}" value="LEFT">LEFT</option>
-                    <option th:if="${car.steeringWheel.name() != 'RIGHT'}"value="RIGHT">RIGHT</option>
-                </select>
-                </div>
-                <div style="margin-left: 40px">
-                <label>Fuel Type</label><br>
-                <select name="fuelType">
-                    <option  th:value="${car.fuelType}" th:text="${car.fuelType}"></option>
-                    <option  th:if="${car.fuelType.name() != 'DIESEL'}" value="DIESEL">DIESEL</option>
-                    <option  th:if="${car.fuelType.name() != 'GASOLINE'}" value="GASOLINE">GASOLINE</option>
-                    <option th:if="${car.fuelType.name() != 'PETROL'}" value="PETROL">PETROL</option>
-                    <option th:if="${car.fuelType.name() != 'ELECTRIC'}" value="ELECTRIC">ELECTRIC</option>
-                </select>
-                </div>
-                <div class="car-form-box" style="margin-left: 40px">
-                    <div class="form-box">
-                        <label>Color</label>
-                        <div class="form-input-box">
-                            <img src="/supercars/assets/images/form-user-icon.svg" width="12" height="14" alt="User">
-                            <input type="text" name="color" class="form-input" th:value="${car.color}"
-                                   required="">
-                       </div>
-                   </div>
-                </div>
-                <div class="car-form-box" style="margin-left: 40px">
-                   <div class="form-box">
-                        <label>Production Year</label>
-                       <div class="form-input-box">
-                            <img src="/supercars/assets/images/form-calendar-icon.svg" width="14" height="14">
-                            <input type="number" name="productionYear" th:value="${car.productionYear}"class="form-input">
-                       </div>
-                   </div>
-                </div>
-                <div style="margin-left: 40px">
-                <label>Picture</label>
-                    <input type="hidden"  name="picUrl" th:value="${car.picUrl}">
-                <input type="file" name="carImage">
-                </div>
-                <div class="car-form-box" style="margin-left: 40px">
-                    <div class="form-box">
-                        <label>Price</label>
-                            <span class="input-group-addon"></span>
-                            <input type="number" name="pricePerHour" th:value="${car.pricePerHour}" class="form-input">
-                    </div>
-                </div>
+                </form>
             </div>
-            <br>
-            <div class="car-form-box" style="margin-left: 42%;">
-                <div class="form-box">
-                    <button type="submit" class="sec-btn"><span>Edit Car</span></button>
-                </div>
-            </div>
-    </form>
-</div>
-</div>
-</div>
+        </div>
+    </div>
 </div>
 <!-- Footer Start -->
 <footer class="site-footer" id="contact">
