@@ -11,17 +11,19 @@ import java.util.Optional;
 
 public interface CarService {
 
-    List<Car> findAllByCategory(Category category);
-
     List<Car> findAll();
+
+    List<Car> findAllByCategory(Category category);
 
     void deleteById(int id);
 
-    Page<Car> findAllPg(Pageable pageable);
+    byte[] getCarService(String fileName);
 
-    void saveCar(Car car, MultipartFile file);
+    void saveCar(Car car, MultipartFile file, int dealerId);
 
     Optional<Car> findById(int id);
 
-     byte[] getCarService(String fileName);
+    Page<Car> Search(Pageable pageable, String keyword);
+
+    List<Car> getByDealer(int dealerId);
 }

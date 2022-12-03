@@ -61,13 +61,18 @@
                                 <i class="menu-background middle"></i>
                                 <i class="menu-background bottom"></i>
                                 <ul>
-                                    <li class="active"><a href="/" title="Home">Home</a></li>
-                                    <li><a href="/cars/add" title="Add">Add</a></li>
+                                    <li th:class="${currentUrl == '/' ? 'active':''}"><a href="/" title="Home">Home</a>
+                                    </li>
+                                    <li th:class="${currentUrl == '/cars/add' ? 'active':''}"><a href="/cars/add"
+                                                                                                 title="Add">Add</a>
+                                    </li>
                                     <li><a href="/supercars/about-us.html" title="About Us">About Us</a></li>
                                     <li class="sub-items">
                                         <a href="javascript:void(0);" title="Cars">Cars</a>
                                         <ul class="sub-menu">
-                                            <li><a href="/cars" title="Car List">Car List</a></li>
+                                            <li th:class="${currentUrl == '/cars' ? 'active':''}"><a href="/cars"
+                                                                                                     title="Car List">Car
+                                                List</a></li>
                                             <li><a href="/supercars/car-detail.html" title="Car Detail">Car Detail</a>
                                             </li>
                                         </ul>
@@ -258,11 +263,12 @@
                             </div>
                         </div>
                     </div>
-                        <br>
-                        <div class="car-form-box" style="margin-left: 45%;">
-                            <div class="form-box">
-                                <button type="submit" class="sec-btn"><span>Add Car</span></button>
-                            </div>
+                    <input type="hidden" name="dealerId" th:value="${currentUser.id}">
+                    <br>
+                    <div class="car-form-box" style="margin-left: 45%;">
+                        <div class="form-box">
+                            <button type="submit" class="sec-btn"><span>Add Car</span></button>
+                        </div>
                         <br>
                     </div>
                 </form>

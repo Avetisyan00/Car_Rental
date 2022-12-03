@@ -54,7 +54,8 @@
                                 <i class="menu-background middle"></i>
                                 <i class="menu-background bottom"></i>
                                 <ul>
-                                    <li class="active"><a href="index.html" title="Home">Home</a></li>
+                                    <li th:class="${currentUrl == '/' ? 'active':''}"><a href="/" title="Home">Home</a>
+                                    </li>
                                     <li><a href="/cars/add" title="Add">Add</a></li>
                                     <li><a href="/supercars/about-us.html" title="About Us">About Us</a></li>
                                     <li class="sub-items">
